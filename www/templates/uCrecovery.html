@@ -1,0 +1,28 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button></ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="side-menu21"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left" id="side-menu21">
+        <ion-header-bar class="bar-stable">
+            <div class="title">UCrecovery</div>
+        </ion-header-bar>
+        <ion-content padding="false" class="side-menu-left has-header">
+            <ion-list>
+                <ion-item class="item-divider">Patient</ion-item>
+                <ion-item ui-sref="uCrecovery.summary" menu-close="">Summary</ion-item>
+                <ion-item ui-sref="uCrecovery.patientData" menu-close="">Data</ion-item>
+                <ion-item ui-sref="uCrecovery.patientCharts" menu-close="">Charts</ion-item>
+                <ion-item class="item-divider">Profiles</ion-item>
+                <ion-item ui-sref="uCrecovery.patientProfiles" menu-close="">Patient</ion-item>
+                <ion-item ui-sref="uCrecovery.staffProfiles" menu-close="">Staff</ion-item>
+                <ion-item ui-sref="uCrecovery.teamProfiles" menu-close="">Team</ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

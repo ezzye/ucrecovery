@@ -1,0 +1,143 @@
+<ion-view title="Andy Apple" id="page4">
+    <ion-content padding="true" class="has-header">
+        <div class="button-bar">
+            <button id="andyApple-button13" class="button button-stable  button-block">&lt;&lt;</button>
+            <button id="andyApple-button14" style="font-size:-100px;" class="button button-stable  button-block">08/04</button>
+            <button id="andyApple-button15" class="button button-stable  button-block">&gt;&gt;</button>
+        </div>
+        <h5 id="andyApple-heading1" style="color:#000000;text-align:center;">General</h5>
+        <form class="list">
+            <label class="item item-select" name="Temperature">
+                <span class="input-label">Temperature</span>
+                <select>
+                    <option>&lt; 35.0 °C</option>
+                    <option>36.5 – 37.5 °C</option>
+                    <option>&gt;37.5 - 38.3 °C</option>
+                    <option>&gt;37.5 - 38.3 °C</option>
+                    <option>&gt;40.0 - 41.5 °C</option>
+                </select>
+            </label>
+            <label class="item item-select" name="HeartRate">
+                <span class="input-label">Heart Rate</span>
+                <select>
+                    <option>&lt; 70 bpm</option>
+                    <option>70 - 80 bpm</option>
+                    <option>81 - 90 bpm</option>
+                    <option>&gt; 90 bpm</option>
+                </select>
+            </label>
+            <label class="item item-select" name="Hemoglobin">
+                <span class="input-label">Hemoglobin</span>
+                <select>
+                    <option></option>
+                </select>
+            </label>
+            <label class="item item-select" name="WhiteBloodCellCount">
+                <span class="input-label">White Blood Cell Count</span>
+                <select></select>
+            </label>
+            <label class="item item-select" name="BloodPressure">
+                <span class="input-label">Blood Pressure</span>
+                <select></select>
+            </label>
+            <label class="item item-select" name="UrineAnalysis">
+                <span class="input-label">Urine Analysis</span>
+                <select></select>
+            </label>
+            <h5 id="andyApple-heading2" style="color:#000000;text-align:center;">Fluid Balance</h5>
+            <ion-item class="range range-positive">Drip (ml)
+                <input type="range" value="0" min="0" max="100" name="Drip">
+            </ion-item>
+            <ion-item class="range range-positive">Jug (ml)
+                <input type="range" value="0" min="0" max="1000" name="Jug">
+            </ion-item>
+            <ion-item class="item-divider"></ion-item>
+            <ion-item class="range range-positive">Urine (ml)
+                <input type="range" value="0" min="0" max="500" name="Urine">
+            </ion-item>
+            <ion-item class="range range-positive">Drain (ml)
+                <input type="range" value="0" min="0" max="500" name="Drain">
+            </ion-item>
+            <h4 id="andyApple-heading3" style="color:#000000;text-align:center;">Net Fluid Balance = 0</h4>
+            <div class="spacer" style="width: 300px; height: 13px;"></div>
+            <h5 id="andyApple-heading4" style="color:#000000;text-align:center;">Nutrional</h5>
+            <label class="item item-select" name="Nutrion">
+                <span class="input-label">Nutrion</span>
+                <select>
+                    <option>Nil by mouth</option>
+                    <option>Clear fluids</option>
+                    <option>Free fluids</option>
+                    <option>Light Diet</option>
+                    <option>Full Diet</option>
+                </select>
+            </label>
+            <h5 id="andyApple-heading5" style="color:#000000;text-align:center;">Dressings</h5>
+            <label class="item item-select" name="Pain Score">
+                <span class="input-label">Pain Score</span>
+                <select>
+                    <option>10 - SEVERE pain</option>
+                    <option>9</option>
+                    <option>8</option>
+                    <option>7</option>
+                    <option>6</option>
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
+                    <option>0 - NO PAIN</option>
+                </select>
+            </label>
+            <label class="item item-select" name="Clexane">
+                <span class="input-label">Clexane</span>
+                <select>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </label>
+            <label class="item item-select" name="Stoma">
+                <span class="input-label">Stoma</span>
+                <select>
+                    <option>Pink</option>
+                    <option>Dusky Purple</option>
+                    <option>Black</option>
+                </select>
+            </label>
+            <label class="item item-select" name="Stockings">
+                <span class="input-label">Stockings</span>
+                <select>
+                    <option>Worn</option>
+                    <option>Not Worn</option>
+                </select>
+            </label>
+            <label class="item item-select" name="Nausea">
+                <span class="input-label">Instances of Nausea</span>
+                <select>
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>&gt; 2</option>
+                </select>
+            </label>
+            <h5 id="andyApple-heading6" style="color:#000000;text-align:center;">Mobilising</h5>
+            <label class="item item-select" name="MetersWalked">
+                <span class="input-label">Meters Walked</span>
+                <select>
+                    <option>0 (m)</option>
+                    <option>60 - 120 (m)</option>
+                    <option>120- 240 (m)</option>
+                    <option>&gt; 240 (m)</option>
+                </select>
+            </label>
+            <label class="item item-select" name="DeepBreathing">
+                <span class="input-label">Deep Breathing</span>
+                <select>
+                    <option>0</option>
+                    <option>1 - 5 times per day</option>
+                    <option>&gt; 5 times per day</option>
+                </select>
+            </label>
+            <div class="spacer" style="height: 100px;"></div>
+        </form>
+    </ion-content>
+</ion-view>

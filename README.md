@@ -11,6 +11,16 @@ For example, over time we would like to be able to use the data collected using 
 
 The first version of our app will aim to streamline, simplify and standardize the data collection process for patients who have just had major surgery, and present it graphically for the purposes of simple and quick-to-access analysis for Doctors.
  
+Working on Project
+====================
+
+Click on this [link](https://waffle.io/ezzye/ucrecovery/join) to access waffle board and see how backlog is progressing.
+
+See here to understand how to specify issue number in branch name and Pull Request (PR) see [here](https://github.com/waffleio/waffle.io/wiki/Recommended-Workflow-Using-Pull-Requests-&-Automatic-Work-Tracking).
+
+See below for links regarding using ionic.
+
+
 
 Ionic App Base
 =====================

@@ -24,8 +24,24 @@ See below for [links](https://github.com/ezzye/ucrecovery/blob/master/README.md#
 
 Project Epics (Milestones) and link to Backlog
 ===============================================
+Project backlog can be found [here](https://docs.google.com/spreadsheets/d/1JBJZh0rqHdKCJ0kOZyJKGXRBXD-W6ChtmF9LF81ZT-4/edit?usp=sharing)
 
+The milestones are:
 
+1. CRUD for medical team
+2. CRUD for doctors
+3. CRUD for patient
+4. CRUD for patient daily data
+5. Patient charts based on data
+6. Set reminder
+7. Notify per reminder
+8. Setup Local Database
+D1. App look and feel
+F1. Setup dev environment
+F2. Package for IOS
+F3. Package for Android
+
+At the very least each milestone should have own branch.  Branches then merged into main using pull requests.
 
 
 Ionic App Base

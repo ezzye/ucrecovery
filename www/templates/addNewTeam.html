@@ -1,15 +1,17 @@
 <ion-view title="Add New Team" id="page16">
     <ion-content padding="true" class="has-header">
-        <form class="list">
+        <form class="list" ng-submit="submitForm(team)">
             <label class="item item-input">
                 <span class="input-label">Team Name:</span>
-                <input type="text" placeholder="">
+                <input type="text" ng-model="team.name" placeholder="Team Name">
             </label>
             <label class="item item-input">
                 <span class="input-label">Location:</span>
-                <input type="text" placeholder="">
+                <input type="text" ng-model="team.location" placeholder="Location">
             </label>
+            <input type="submit" class="button button-block button-positive" value="Create Profile">
+            <!-- <a ui-sref="uCrecovery.teamProfiles" id="addNewTeam-button113" class="button button-assertive  button-block" ng-click="submitForm(team)">Create Profile</a> -->
         </form>
-        <a ui-sref="uCrecovery.teamProfiles" id="addNewTeam-button113" class="button button-assertive  button-block">Create Profile</a>
+
     </ion-content>
 </ion-view>

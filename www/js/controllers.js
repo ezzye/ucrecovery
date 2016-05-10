@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('app.controllers', [])
 
 .controller('summaryCtrl', function($scope) {
@@ -44,23 +46,25 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('addNewTeamCtrl', function($scope,$state,formData) {
+.controller('addNewTeamCtrl', function($scope,$state,$ionicPopup,formData) {
 
   //set up team object to hold team data
   //add 'name' and 'location' to hold team data
   //e.g. viewmodel team.name and team.location
 
+
   $scope.team = {};
   //Called when submit button clicked using 'ng-submit'
   $scope.submitForm = function(team) {
     if(team.name && team.location) {
-      console.log('submitting form ...hello world',team);
-      formData.updateForm(team);
-      console.log("Retrieving form from service", formData.getForm());
+      formData.addTeam(team);
       $state.go('uCrecovery.teamProfiles');
     } else {
-      alert("no blank spaces allowed");
+      $ionicPopup.alert({
+        title: 'Fill in all boxes',
+        template: 'Need both name and location'
+      });
     }
   };
 
-})
+});

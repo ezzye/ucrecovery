@@ -43,6 +43,23 @@ F3. Package for Android
 
 At the very least each milestone should have own branch.  Branches then merged into main using pull requests.
 
+Testing
+====================
+
+
+Before running end-to-end testing protractor needs to be installed and webdriver updated:
+```
+$ npm install -g protractor
+$ webdriver-manager update
+```
+
+
+To run unit tests:
+```
+karma start tests/unit-tests.conf.js
+```
+
+
 
 Ionic App Base
 =====================

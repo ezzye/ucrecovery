@@ -52,7 +52,10 @@ Before running end-to-end testing protractor needs to be installed and webdriver
 $ npm install -g protractor
 $ webdriver-manager update
 ```
-
+To run e2e tests:
+```
+protractor tests/e2e-tests.conf.js
+```
 
 To run unit tests:
 ```

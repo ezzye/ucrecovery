@@ -7,7 +7,7 @@ exports.config = {
         },
         baseUrl: 'http://localhost:8100',
         specs: [
-            'e2e-tests/**/*.tests.js'
+            'e2e-tests/**/*.test.js'
         ],
         jasmineNodeOpts: {
             isVerbose: true,

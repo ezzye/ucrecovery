@@ -34,7 +34,7 @@ describe('clicking on the create profile button',function() {
       expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/teamProfile');
     });
 
-    //should test content of team profile page
+    //possible shold have extra test to ensure that team actually added
 
   });
 

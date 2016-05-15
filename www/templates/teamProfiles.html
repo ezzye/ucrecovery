@@ -1,6 +1,25 @@
 <ion-view title="Team Profiles" id="page11">
     <ion-content padding="true" class="has-header">
         <a ui-sref="uCrecovery.addNewTeam" id="teamProfiles-button64" class="button button-balanced  button-block icon ion-ios-people">Add New Team</a>
+
+        <!-- example code start -->
+    <div class="list">
+        <label class="item item-input">
+            <span class="input-label">Message: </span>
+            <input type="text" ng-model="newMessage">
+        </label>
+    </div>
+    <div>
+        <button class="button button-block" ng-click="save(newMessage)">
+            Save
+        </button>
+        <button class="button button-block" ng-click="load()">
+            Load
+        </button>
+        <p>{{ statusMessage }}</p>
+    </div>
+        <!-- example code end -->
+
         <div class="list card">
             <div class="item item-divider">Team 1</div>
             <div class="item item-body">

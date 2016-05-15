@@ -5,13 +5,13 @@ The app's objective is to reduce recovery times so that patients can get out of 
 
 As such, our app intends to work towards generating a new best practice for data collection.  We are all passionate about technology and really think it can make a difference!
 
-The longer term aim is to eventually use the aggregated data over time, as a way of looking for correlations between certain care protocols and average recovery times. 
+The longer term aim is to eventually use the aggregated data over time, as a way of looking for correlations between certain care protocols and average recovery times.
 
 For example, over time we would like to be able to use the data collected using the app to analyse the effect of simple interventions – for example ensuring patients drink a certain amount of water each day – and recovery time.
 
 The first version of our app will aim to streamline, simplify and standardize the data collection process for patients who have just had major surgery, and present it graphically for the purposes of simple and quick-to-access analysis for Doctors.
- 
- 
+
+
 Working on Project
 ====================
 
@@ -62,6 +62,22 @@ To run unit tests:
 karma start tests/unit-tests.conf.js
 ```
 
+Add SQLite Database
+=====================
+
+Example database added to app.js
+
+Example use in 'Fat Controller' teamProfilesCtrl
+
+see [example](http://nextflow.in.th/en/2015/easy-way-to-work-with-sqlite-database-in-ionic-framework/)
+
+Add cordova-SQLite plugin:
+
+```
+cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
+```
+
+SQLite plugin only works in ios emulator or in real device.
 
 
 Ionic App Base
@@ -79,7 +95,7 @@ For example, to start a new Ionic project with the default tabs interface, make 
 $ npm install -g ionic
 ```
 
-Then run: 
+Then run:
 
 ```bash
 $ ionic start myProject tabs

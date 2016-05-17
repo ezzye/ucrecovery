@@ -36,9 +36,13 @@ The milestones are:
 6. Set reminder
 7. Notify per reminder
 8. Setup Local Database
+
 D1. App look and feel
+
 F1. Setup dev environment
+
 F2. Package for IOS
+
 F3. Package for Android
 
 At the very least each milestone should have own branch.  Branches then merged into main using pull requests.

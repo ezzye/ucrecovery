@@ -73,8 +73,20 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('addNewStaffCtrl', function($scope) {
+.controller('addNewStaffCtrl', function($scope,$state,$ionicPopup,formData) {
 
+  $scope.staff = {};
+  $scope.submitForm = function(staff) {
+    if(staff.name && staff.role && staff.contact && staff.team) {
+      formData.addStaff(staff);
+      $state.go('uCrecovery.staffProfiles');
+    } else {
+      $ionicPopup.alert({
+        title: 'Fill in all the boxes',
+        template: 'Needs name, role, contact and team'
+      });
+    }
+  }
 })
 
 .controller('addNewTeamCtrl', function($scope,$state,$ionicPopup,formData) {

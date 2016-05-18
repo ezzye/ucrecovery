@@ -30,7 +30,7 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
     try {
         db = $cordovaSQLite.openDB({name:"nextflow.db",location:'default'});
     } catch (error) {
-        alert(error);
+        console.log(error);
     }
 
     $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Messages (id INTEGER PRIMARY KEY AUTOINCREMENT, message TEXT)');

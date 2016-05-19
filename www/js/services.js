@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('app.services', [])
 
 .factory('formData', [function(formData){
@@ -10,8 +12,26 @@ angular.module('app.services', [])
     addStaff: function(staff) {
       console.log(staff);
       return staff;
+    },
+    getStaff: function() {
+
+      var staff = [{
+                name: "Mr Test",
+                role: "Doctor",
+                contact: "12345",
+                team: "ward 10"
+                },
+                {
+                name: "Ms Tester",
+                role: "Doctor B",
+                contact: "23456",
+                team: "ward 10"
+                }
+              ];
+
+      return staff;
     }
-  }
+  };
 
 }])
 

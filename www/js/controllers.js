@@ -69,7 +69,11 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('staffProfilesCtrl', function($scope) {
+.controller('staffProfilesCtrl', function($scope,formData) {
+
+  $scope.getStaff = function() {
+    return formData.getStaff();
+  };
 
 })
 

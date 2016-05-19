@@ -18,41 +18,41 @@ describe('clicking on add team button ',function() {
 
 });
 
-// describe('clicking on the create profile button',function() {
+describe('clicking on the create profile button',function() {
 
-//   var createProfileButton, teamName, teamLoction;
+  var createProfileButton, teamName, teamLoction;
 
-//   beforeEach(function() {
-//     browser.get('/#/side-menu21/addTeam');
-//     teamName = element(by.model('team.name'));
-//     teamLoction = element(by.model('team.location'));
-//     createProfileButton = element(by.css('.button.button-block.button-positive'));
-//   });
+  beforeEach(function() {
+    browser.get('/#/side-menu21/addTeam');
+    teamName = element(by.model('team.name'));
+    teamLoction = element(by.model('team.location'));
+    createProfileButton = element(by.css('.button.button-block.button-positive'));
+  });
 
-//   it('should validate all fields filled in and display team profile',function() {
-//     teamName.sendKeys('First test team');
-//     teamLoction.sendKeys('Hospital ward A');
+  it('should validate all fields filled in and display team profile',function() {
+    teamName.sendKeys('First test team');
+    teamLoction.sendKeys('Hospital ward A');
 
-//     createProfileButton.click().then(function() {
-//       expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/teamProfile');
-//     });
+    createProfileButton.click().then(function() {
+      expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/teamProfile');
+    });
 
-//     //possible shold have extra test to ensure that team actually added
+    //possible shold have extra test to ensure that team actually added
 
-//   });
+  });
 
-//   it('should show pop up if all fields not filled in',function() {
-//     teamName.sendKeys('');
-//     teamLoction.sendKeys('');
+  it('should show pop up if all fields not filled in',function() {
+    teamName.sendKeys('');
+    teamLoction.sendKeys('');
 
-//     createProfileButton.click().then(function() {
-//       expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addTeam');
+    createProfileButton.click().then(function() {
+      expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addTeam');
 
-//       var popup = element(by.css('.popup-container.popup-showing.active'));
-//       expect(popup.isDisplayed()).toBeTruthy();
+      var popup = element(by.css('.popup-container.popup-showing.active'));
+      expect(popup.isDisplayed()).toBeTruthy();
 
-//     });
+    });
 
-//   });
+  });
 
-// });
+});

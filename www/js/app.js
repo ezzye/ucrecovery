@@ -33,19 +33,25 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
         console.log(error);
     }
 
-    $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Messages (id INTEGER PRIMARY KEY AUTOINCREMENT, message TEXT)');
+    try {
 
-    // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key autoincrement, firstname text, lastname text)");
+      $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Messages (id INTEGER PRIMARY KEY AUTOINCREMENT, message TEXT)');
 
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS teams (id integer primary key autoincrement, name text, location text)");
+      // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key autoincrement, firstname text, lastname text)");
 
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS staff (id integer primary key autoincrement, first_name text, last_name text, position text, team_id integer)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS teams (id integer primary key autoincrement, name text, location text)");
 
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS patientDetails (id integer primary key autoincrement, first_name text, last_name text,hospital_number text, NHS_number text, dob DATE, procedure text, in_date DATE, out_date DATE, op_date DATE)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS staff (id integer primary key autoincrement, first_name text, last_name text, position text, team_id integer)");
 
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS patientTreatments (id integer primary key autoincrement, date DATETIME, treatment text, comment text, patient_id integer)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS patientDetails (id integer primary key autoincrement, first_name text, last_name text,hospital_number text, NHS_number text, dob DATE, procedure text, in_date DATE, out_date DATE, op_date DATE)");
 
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS patientData (id integer primary key autoincrement, date DATETIME, measurement text, value NUMERIC, patient_id integer)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS patientTreatments (id integer primary key autoincrement, date DATETIME, treatment text, comment text, patient_id integer)");
+
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS patientData (id integer primary key autoincrement, date DATETIME, measurement text, value NUMERIC, patient_id integer)");
+
+    } catch (error) {
+        console.log(error);
+    }
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

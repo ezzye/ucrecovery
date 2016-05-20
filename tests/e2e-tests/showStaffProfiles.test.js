@@ -30,7 +30,7 @@ describe('showing staff profile page ',function() {
   });
 
   it('show a staff image', function(){
-    browser.get('http://localhost:8100/#/side-menu21/staffProfiles')
+    // browser.get('http://localhost:8100/#/side-menu21/staffProfiles')
     var staffMember = element(by.repeater(staff in staffmems).row(0).column('staff.name'));
     expect(staffMember).toEqual('Mr Test');
   });

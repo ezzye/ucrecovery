@@ -10,7 +10,7 @@ angular.module('app.routes', [])
 
 
 
-      .state('uCrecovery.summary', {
+  .state('uCrecovery.summary', {
     url: '/exceptions',
     views: {
       'side-menu21': {

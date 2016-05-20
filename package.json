@@ -30,5 +30,7 @@
     "cordova-sqlite-ext",
     "cordova-sqlite-storage"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios"
+  ]
 }

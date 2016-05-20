@@ -71,6 +71,8 @@ angular.module('app.controllers', [])
 
 .controller('staffProfilesCtrl', function($scope,formData) {
 
+  $scope.staffmems = [];
+
   $scope.getStaff = function() {
     return formData.getStaff();
   };
@@ -81,7 +83,7 @@ angular.module('app.controllers', [])
 
   $scope.staff = {};
   $scope.submitForm = function(staff) {
-    if(staff.name && staff.role && staff.contact && staff.team) {
+    if(staff.name && staff.role && staff.contact) {
       formData.addStaff(staff);
       $state.go('uCrecovery.staffProfiles');
     } else {
@@ -90,7 +92,7 @@ angular.module('app.controllers', [])
         template: 'Needs name, role, contact and team'
       });
     }
-  }
+  };
 })
 
 .controller('addNewTeamCtrl', function($scope,$state,$ionicPopup,formData) {

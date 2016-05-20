@@ -3,15 +3,15 @@
         <form class="list">
             <label class="item item-input">
                 <span class="input-label">Staff name</span>
-                <input type="text" placeholder="">
+                <input type="text" ng-model="staff.name" placeholder="">
             </label>
             <label class="item item-input">
                 <span class="input-label">Role</span>
-                <input type="text" placeholder="">
+                <input type="text" ng-model="staff.role" placeholder="">
             </label>
             <label class="item item-input">
                 <span class="input-label">Contact Info</span>
-                <input type="tel" placeholder="">
+                <input type="tel" ng-model="staff.contact" placeholder="">
             </label>
         </form>
         <a ui-sref="uCrecovery.staffProfiles" id="addNewStaff-button112" class="button button-assertive  button-block icon ion-ios-person-outline">Create Profile</a>

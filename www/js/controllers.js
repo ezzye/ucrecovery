@@ -70,21 +70,14 @@ angular.module('app.controllers', [])
 })
 
 .controller('staffProfilesCtrl', function($scope,formData) {
-
-  $scope.staffmems = [];
-
-  $scope.getStaff = function() {
-    return formData.getStaff();
-  };
-
+  $scope.staffmems = formData.getStaff();
 })
 
 .controller('addNewStaffCtrl', function($scope,$state,$ionicPopup,formData) {
-
   $scope.staff = {};
   $scope.submitForm = function(staff) {
     if(staff.name && staff.role && staff.contact) {
-      formData.addStaff(staff);
+      $scope.staffmems = formData.addStaff(staff);
       $state.go('uCrecovery.staffProfiles');
     } else {
       $ionicPopup.alert({

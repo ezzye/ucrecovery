@@ -2,23 +2,23 @@
 
 angular.module('app.services', [])
 
-.factory('formData', [function(formData){
+.factory('formData', [function(){
 
-var staffmems = [{
-          name: "Mr Test",
-          role: "Doctor 1",
-          contact: "12345",
-          team: "ward 10",
-          picture: "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png"
-          },
-          {
-          name: "Ms Tester",
-          role: "Doctor 2",
-          contact: "23456",
-          team: "ward 10",
-          picture: "img/ep8SJoL3RZ6EqXtn74g7_Junior1.png"
-          }
-        ];
+  var staffmems = [{
+      name: "Mr Test",
+      role: "Doctor 1",
+      contact: "12345",
+      team: "ward 10",
+      picture: "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png"
+      },
+      {
+      name: "Ms Tester",
+      role: "Doctor 2",
+      contact: "23456",
+      team: "ward 10",
+      picture: "img/ep8SJoL3RZ6EqXtn74g7_Junior1.png"
+      }
+    ];
 
   return {
     addTeam: function(team) {
@@ -27,10 +27,8 @@ var staffmems = [{
       return team;
     },
     addStaff: function(staff) {
-      console.log(staff);
-      console.log(staffmems);
       staffmems.push(staff);
-      return staff;
+      return staffmems;
     },
     getStaff: function() {
       return staffmems;

@@ -2,12 +2,14 @@
     <ion-content padding="true" class="has-header">
         <a ui-sref="uCrecovery.addNewStaff" id="staffProfiles-button110" class="button button-balanced  button-block">Add New Staff Profile</a>
         <h4 id="staffProfiles-heading22" style="color:#000000;">Consultants</h4>
-        <form class="list">
-            <ion-item class="item-thumbnail-left">
+        <form class="list" ng-submit="getStaff()">
+        <!-- Use ng-repeat = "staff in staffmems"-->
+            <ion-item class="item-thumbnail-left" ng-repeat="staff in staffmems">
                 <img src="img/dP6h8dpQSY6tDxqMA7OF_Consultant.png">
-                <h2>Consultant 1</h2>
-                <p>Contact information: XXX</p>
+                <h2>{{staff.name}}</h2>
+                <p>Contact information: {{staff.contact}}</p>
             </ion-item>
+
             <ion-item class="item-thumbnail-left">
                 <img src="img/dP6h8dpQSY6tDxqMA7OF_Consultant.png">
                 <h2>Consultant 2</h2>

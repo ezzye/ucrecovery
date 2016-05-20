@@ -9,6 +9,10 @@
 // 'starter.controllers' is found in controllers.js
 var db = null;
 
+
+
+var team ={};
+
 angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
 
 .run(function($ionicPlatform, $cordovaSQLite) {

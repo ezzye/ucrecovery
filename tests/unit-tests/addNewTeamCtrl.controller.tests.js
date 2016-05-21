@@ -64,7 +64,6 @@ describe('addNewTeamCtrl',function() {
   }));
 
 
-
   describe('#submitForm', function() {
 
     it('call addTeam on formData service', function() {

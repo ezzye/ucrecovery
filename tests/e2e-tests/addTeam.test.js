@@ -1,57 +1,54 @@
 "use strict";
 
-describe('clicking on add team button ',function() {
+describe('Team profile pages',function() {
 
-  var addTeamButton;
+  var addTeamButton, createProfileButton;
+  var teamName, teamLocation;
 
-  beforeEach(function() {
-    browser.get('/#/side-menu21/teamProfile');
-    addTeamButton = element(by.linkText('Add New Team'));
-  });
+  describe('showing team profile pages',function() {
 
-  it('it should show the add team new team page when add team button pressed',function() {
-    addTeamButton.click().then(function() {
-      expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addTeam');
+    beforeEach(function() {
+      browser.get('/#/side-menu21/teamProfile');
+      addTeamButton = element(by.linkText('Add New Team'));
     });
 
-  });
-
-});
-
-describe('add Team page',function() {
-
-  var createProfileButton, teamName, teamLoction;
-
-  beforeEach(function() {
-    browser.get('/#/side-menu21/addTeam');
-    teamName = element(by.model('team.name'));
-    teamLoction = element(by.model('team.location'));
-    createProfileButton = element(by.css('.button.button-block.button-positive'));
-  });
-
-  it('should add a team profile',function() {
-    teamName.sendKeys('First test team');
-    teamLoction.sendKeys('Hospital ward A');
-
-    createProfileButton.click().then(function() {
-      expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/teamProfile');
-      // expect(element.all(by.repeater('team in teams')).count()).toEqual(3);
+    it('should show team profiles on page',function() {
+      expect(element.all(by.repeater('team in teams')).count()).toEqual(2);
     });
 
+    it('it should show the add team new team page when add team button pressed',function() {
+      addTeamButton.click().then(function() {
+        expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addTeam');
+      });
+    });
   });
 
-  it('should show pop up if all fields not filled in',function() {
-    teamName.sendKeys('');
-    teamLoction.sendKeys('');
+  describe('add Team page',function() {
 
-    createProfileButton.click().then(function() {
-      expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addTeam');
-
-      var popup = element(by.css('.popup-container.popup-showing.active'));
-      expect(popup.isDisplayed()).toBeTruthy();
-
+    beforeEach(function() {
+      browser.get('/#/side-menu21/addTeam');
+      teamName = element(by.model('team.name'));
+      teamLocation = element(by.model('team.location'));
+      createProfileButton = element(by.css('.button.button-block.button-positive'));
     });
 
-  });
+    it('should add a team profile',function() {
+      teamName.sendKeys('First test team');
+      teamLocation.sendKeys('Hospital ward A');
+      createProfileButton.click().then(function() {
+        expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/teamProfile');
+        expect(element.all(by.repeater('team in teams')).count()).toEqual(3);
+      });
+    });
 
+    it('should show pop up if all fields not filled in',function() {
+      teamName.sendKeys('');
+      teamLocation.sendKeys('');
+      createProfileButton.click().then(function() {
+        expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addTeam');
+        var popup = element(by.css('.popup-container.popup-showing.active'));
+        expect(popup.isDisplayed()).toBeTruthy();
+      });
+    });
+  });
 });

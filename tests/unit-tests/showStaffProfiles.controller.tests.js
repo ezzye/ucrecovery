@@ -9,16 +9,12 @@ describe('staffProfilesCtrl specific call to #getStaff',function() {
   beforeEach(module('app'));
 
   beforeEach(inject(function($controller,$rootScope) {
-
     scope = $rootScope.$new();
-
     formDataServiceMock = jasmine.createSpyObj('formData spy',['getStaff']);
-
     controller = $controller('staffProfilesCtrl',{
       $scope: scope,
       formData: formDataServiceMock
     });
-
   }));
 
 
@@ -33,10 +29,5 @@ describe('staffProfilesCtrl specific call to #getStaff',function() {
     it('should return staff profiles',function() {
       expect(formDataServiceMock.getStaff).toHaveBeenCalledWith();
     });
-
   });
-
-
-
-
 });

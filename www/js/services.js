@@ -20,11 +20,23 @@ angular.module('app.services', [])
       }
     ];
 
+  var teams = [{
+      name: "Ward Z",
+      location: "UCL London",
+      },
+      {
+      name: "Ward 12",
+      location: "Birmingham New Hospital",
+      }
+    ];
+
   return {
     addTeam: function(team) {
-      console.log(team);
-      // Add new name and location to team table
-      return team;
+      teams.push(team);
+      return teams;
+    },
+    getTeams: function() {
+      return teams;
     },
     addStaff: function(staff) {
       staffmems.push(staff);

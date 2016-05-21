@@ -1,18 +1,18 @@
 "use strict";
 
-describe('staffProfilesCtrl specificall #getStaff',function() {
+describe('staffProfilesCtrl specific call to #getStaff',function() {
   var formDataServiceMock,
       controller;
-
 
   var scope;
 
   beforeEach(module('app'));
 
   beforeEach(inject(function($controller,$rootScope) {
+
     scope = $rootScope.$new();
 
-    formDataServiceMock = jasmine.createSpyObj('formService spy',['getStaff']);
+    formDataServiceMock = jasmine.createSpyObj('formData spy',['getStaff']);
 
     controller = $controller('staffProfilesCtrl',{
       $scope: scope,
@@ -22,9 +22,11 @@ describe('staffProfilesCtrl specificall #getStaff',function() {
   }));
 
 
-  beforeEach(function() {
-    scope.getStaff();
-  });
+  beforeEach(inject(function() {
+    formDataServiceMock.getStaff();
+  }));
+
+  //Currently no fuctions in staffProfilesCtrl so just testing forData called!
 
   describe('call getStaff on formData service',function() {
 

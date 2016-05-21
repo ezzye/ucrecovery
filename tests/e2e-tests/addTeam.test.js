@@ -18,7 +18,7 @@ describe('clicking on add team button ',function() {
 
 });
 
-describe('clicking on the create profile button',function() {
+describe('add Team page',function() {
 
   var createProfileButton, teamName, teamLoction;
 
@@ -29,15 +29,14 @@ describe('clicking on the create profile button',function() {
     createProfileButton = element(by.css('.button.button-block.button-positive'));
   });
 
-  it('should validate all fields filled in and display team profile',function() {
+  it('should add a team profile',function() {
     teamName.sendKeys('First test team');
     teamLoction.sendKeys('Hospital ward A');
 
     createProfileButton.click().then(function() {
       expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/teamProfile');
+      // expect(element.all(by.repeater('team in teams')).count()).toEqual(3);
     });
-
-    //possible shold have extra test to ensure that team actually added
 
   });
 

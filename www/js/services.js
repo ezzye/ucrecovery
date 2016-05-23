@@ -31,12 +31,16 @@ angular.module('app.services', [])
     ];
 
   var patients = [{
-      name: "Ward Z",
-      location: "UCL London",
+      id: 0,
+      patientName: "Apple-Joe McFee",
+      patientDOB: 19911119,
+      HospitalNumber: "H129994G"
       },
       {
-      name: "Ward 12",
-      location: "Birmingham New Hospital",
+      id: 1,
+      patientName: "Beach-Joe McFee",
+      patientDOB: 19999919,
+      HospitalNumber: "H122224G"
       }
     ];
 

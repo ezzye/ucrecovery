@@ -51,8 +51,8 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('patientProfilesCtrl', function($scope) {
-
+.controller('patientProfilesCtrl', function($scope,formData) {
+  $scope.patients = formData.getPatients();
 })
 
 .controller('andyAppleCtrl', function($scope) {

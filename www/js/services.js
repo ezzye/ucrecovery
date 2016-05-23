@@ -30,6 +30,16 @@ angular.module('app.services', [])
       }
     ];
 
+  var patients = [{
+      name: "Ward Z",
+      location: "UCL London",
+      },
+      {
+      name: "Ward 12",
+      location: "Birmingham New Hospital",
+      }
+    ];
+
   return {
     addTeam: function(team) {
       teams.push(team);
@@ -44,6 +54,9 @@ angular.module('app.services', [])
     },
     getStaff: function() {
       return staffmems;
+    },
+    getPatients: function() {
+      return patients;
     }
   };
 

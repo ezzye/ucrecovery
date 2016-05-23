@@ -7,7 +7,11 @@
             </label>
         </form>
         <a ui-sref="uCrecovery.addNewPatient" id="patientProfiles-button60" class="button button-balanced  button-block">Add New Patient</a>
-        <a ui-sref="uCrecovery.andyApple3" id="patientProfiles-button44" class="button button-positive  button-block">Andy Apple</a>
+
+        <!-- Start of repeat -->
+        <a href="/patientProfile/{{patient.id}}" id="patientProfiles-button44" class="button button-positive  button-block" ng-repeat="patient in patients">{{patient.patientName}}</a>
+        <!-- Start of repeat -->
+
         <button id="patientProfiles-button47" class="button button-positive  button-block">Bob Beaver</button>
         <button id="patientProfiles-button48" class="button button-positive  button-block">Clive Carrot</button>
         <button id="patientProfiles-button49" class="button button-positive  button-block">Duncan Donought</button>

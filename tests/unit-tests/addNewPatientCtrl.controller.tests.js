@@ -50,7 +50,7 @@ describe('addNewPatientCtrl', function() {
   describe('#submitForm', function() {
 
     it('calls addPatient on formData service', function() {
-      expect(formDataServiceMock.addStaff).toHaveBeenCalledWith(patient);
+      expect(formDataServiceMock.addPatient).toHaveBeenCalledWith(patient);
     });
 
     it('if successful it should change state to uCrecovery.staffProfiles', function() {

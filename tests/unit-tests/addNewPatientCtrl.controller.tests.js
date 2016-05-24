@@ -17,6 +17,9 @@ describe('addNewPatientCtrl', function() {
   patient.NHSNumber = "PS 456GH";
   patient.patientHeight = 181;
   patient.PreOpWeight = 85;
+
+
+  //toggles, attribute of what?
   patient.BetaBlockers = true;
   patient.Antibiotic = false;
   patient.BloodTransfusion = true;

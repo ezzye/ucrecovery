@@ -34,7 +34,7 @@ describe('Patient profile pages',function() {
     });
   });
 
-  // describe('add Patient page',function() {
+  describe('add Patient page',function() {
 
   //   beforeEach(function() {
   //     browser.get('/#/side-menu21/addPatient');
@@ -99,5 +99,5 @@ describe('Patient profile pages',function() {
   //       expect(popup.isDisplayed()).toBeTruthy();
   //     });
   //   });
-  // });
+  });
 });

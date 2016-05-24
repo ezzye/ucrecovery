@@ -34,56 +34,56 @@ describe('Patient profile pages',function() {
     });
   });
 
-//   describe('add Patient page',function() {
+  describe('add Patient page',function() {
 
-//     beforeEach(function() {
-//       browser.get('/#/side-menu21/addPatient');
+    beforeEach(function() {
+      browser.get('/#/side-menu21/addPatient');
 
-//       patientName = element(by.model('patient.patientName'));
-//       patientDOB = element(by.model('patient.patientDOB'));
-//       HospitalNumber = element(by.model('patient.HospitalNumber'));
-//       NHSNumber = element(by.model('patient.NHSNumber'));
-//       patientHeight = element(by.model('patient.patientHeight'));
-//       PreOpWeight = element(by.model('patient.PreOpWeight'));
-//       BetaBlockers = element(by.model('patient.BetaBlockers'));
-//       Antibiotic = element(by.model('patient.Antibiotic'));
-//       BloodTransfusion = element(by.model('patient.BloodTransfusion'));
-//       Antihypertensive = element(by.model('patient.Antihypertensive'));
+      patientName = element(by.model('patient.patientName'));
+      patientDOB = element(by.model('patient.patientDOB'));
+      HospitalNumber = element(by.model('patient.HospitalNumber'));
+      NHSNumber = element(by.model('patient.NHSNumber'));
+      patientHeight = element(by.model('patient.patientHeight'));
+      PreOpWeight = element(by.model('patient.PreOpWeight'));
+      BetaBlockers = element(by.model('patient.BetaBlockers'));
+      Antibiotic = element(by.model('patient.Antibiotic'));
+      BloodTransfusion = element(by.model('patient.BloodTransfusion'));
+      Antihypertensive = element(by.model('patient.Antihypertensive'));
 
-//       createProfileButton = element(by.css('.button.button-assertive.button-block.icon.ion-ios-person'));
-//     });
+      createProfileButton = element(by.css('.button.button-assertive.button-block.icon.ion-ios-person'));
+    });
 
-//     it('should add a patient profile',function() {
+    it('should add a patient profile',function() {
 
-//       patientName.sendKeys('Gary Norton');
-//       patientDOB.sendKeys('19950319');
-//       HospitalNumber.sendKeys('H0923477');
-//       NHSNumber.sendKeys('PSQ H345');
-//       patientHeight.sendKeys('180');
-//       PreOpWeight.sendKeys('85');
-//       BetaBlockers.sendKeys('Y');
-//       Antibiotic.sendKeys('N');
-//       BloodTransfusion.sendKeys('Y');
-//       Antihypertensive.sendKeys('N');
+      patientName.sendKeys('Gary Norton');
+      patientDOB.sendKeys('19950319');
+      HospitalNumber.sendKeys('H0923477');
+      NHSNumber.sendKeys('PSQ H345');
+      patientHeight.sendKeys('180');
+      PreOpWeight.sendKeys('85');
+      BetaBlockers.sendKeys('Y');
+      Antibiotic.sendKeys('N');
+      BloodTransfusion.sendKeys('Y');
+      Antihypertensive.sendKeys('N');
 
-//       createProfileButton.click().then(function() {
-//         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/patientProfiles');
-//         expect(element.all(by.repeater('patient in patients')).count()).toEqual(3);
-//       });
-//     });
+      createProfileButton.click().then(function() {
+        expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/patientProfiles');
+        expect(element.all(by.repeater('patient in patients')).count()).toEqual(3);
+      });
+    });
 
-//     it('should show pop up if all fields not filled in',function() {
-//       patientName.sendKeys('');
-//       patientDOB.sendKeys('');
-//       HospitalNumber.sendKeys('');
-//       NHSNumber.sendKeys('');
-//       patientHeight.sendKeys('');
-//       PreOpWeight.sendKeys('');
-//       createProfileButton.click().then(function() {
-//         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addPatient');
-//         var popup = element(by.css('.popup-container.popup-showing.active'));
-//         expect(popup.isDisplayed()).toBeTruthy();
-//       });
-//     });
-//   });
+    it('should show pop up if all fields not filled in',function() {
+      patientName.sendKeys('');
+      patientDOB.sendKeys('');
+      HospitalNumber.sendKeys('');
+      NHSNumber.sendKeys('');
+      patientHeight.sendKeys('');
+      PreOpWeight.sendKeys('');
+      createProfileButton.click().then(function() {
+        expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addPatient');
+        var popup = element(by.css('.popup-container.popup-showing.active'));
+        expect(popup.isDisplayed()).toBeTruthy();
+      });
+    });
+  });
 });

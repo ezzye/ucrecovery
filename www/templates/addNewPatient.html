@@ -4,27 +4,27 @@
             <h4 id="addNewPatient-heading20" style="color:#000000;" class=" ">Patient Information</h4>
             <label class="item item-input " id="addNewPatient-input14" name="patientName">
                 <span class="input-label">Full Name</span>
-                <input type="text" placeholder="">
+                <input type="text" ng-model="patient.patientName" placeholder="">
             </label>
             <label class="item item-input " id="addNewPatient-input15" name="patientDOB">
                 <span class="input-label">DOB</span>
-                <input type="date" placeholder="dd/mm/yyyy">
+                <input type="date" ng-model="patient.patientDOB" placeholder="dd/mm/yyyy">
             </label>
             <label class="item item-input " id="addNewPatient-input16" name="HospitalNumber">
                 <span class="input-label">Hospital Number</span>
-                <input type="text" placeholder="">
+                <input type="text" ng-model="patient.HospitalNumber" placeholder="">
             </label>
             <label class="item item-input " id="addNewPatient-input17" name="NHSNumber">
                 <span class="input-label">NHS Number</span>
-                <input type="text" placeholder="">
+                <input type="text" ng-model="patient.NHSNumber" placeholder="">
             </label>
             <label class="item item-input " id="addNewPatient-input18" name="patientHeight">
                 <span class="input-label">Height</span>
-                <input type="text" placeholder="cm">
+                <input type="text" ng-model="patient.patientHeight" placeholder="cm">
             </label>
             <label class="item item-input " id="addNewPatient-input19" name="PreOpWeight">
                 <span class="input-label">Weight</span>
-                <input type="text" placeholder="kg">
+                <input type="text" ng-model="patient.PreOpWeight" placeholder="kg">
             </label>
             <div class="spacer" style="width: 300px; height: 24px;"></div>
             <h4 id="addNewPatient-heading21" style="color:#000000;" class=" ">Medications</h4>

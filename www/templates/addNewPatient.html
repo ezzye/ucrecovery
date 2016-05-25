@@ -1,7 +1,9 @@
 <ion-view title="Add New Patient" id="page18">
     <ion-content padding="true" class="has-header">
-        <form id="addNewPatient-form18" class="list ">
+        <form id="addNewPatient-form18"  ng-submit="submitForm(patient)"" class="list ">
             <h4 id="addNewPatient-heading20" style="color:#000000;" class=" ">Patient Information</h4>
+            <input type="submit" id="addNewPatient-button95" class=" button button-assertive  button-block icon ion-ios-person " value="Create Profile">
+            <div class="spacer" style="width: 300px; height: 24px;"></div>
             <label class="item item-input " id="addNewPatient-input14" name="patientName">
                 <span class="input-label">Full Name</span>
                 <input type="text" ng-model="patient.patientName" placeholder="">
@@ -37,7 +39,8 @@
             <ion-toggle toggle-class="toggle-positive" id="addNewPatient-toggle41" name="Antihypertensive" class=" ">Antihypertensive</ion-toggle>
             <ion-list id="addNewPatient-list17" class=" "></ion-list>
             <div class="spacer" style="width: 300px; height: 24px;"></div>
-            <a ui-sref="uCrecovery.patientProfiles" id="addNewPatient-button95" class=" button button-assertive  button-block icon ion-ios-person ">Create Profile</a>
+            <input type="submit" id="addNewPatient-button95" class=" button button-assertive  button-block icon ion-ios-person " value="Create Profile">
+            <!-- <a ui-sref="uCrecovery.patientProfiles" id="addNewPatient-button95" class=" button button-assertive  button-block icon ion-ios-person ">Create Profile</a> -->
             <div class="spacer" style="height: 100px;"></div>
         </form>
         <ion-list></ion-list>

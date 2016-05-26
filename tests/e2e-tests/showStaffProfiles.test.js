@@ -8,7 +8,7 @@ describe('showing staff profile pages ',function() {
   describe('Staff profile page',function() {
 
     beforeEach(function() {
-      browser.get('http://localhost:8100/#/side-menu21/staffProfiles');
+      browser.get('/#/side-menu21/staffProfiles');
       addNewStaffProfileButton = element(by.linkText('Add New Staff Profile'));
     });
 
@@ -26,8 +26,8 @@ describe('showing staff profile pages ',function() {
   describe('Add staff page',function() {
 
     beforeEach(function() {
-      browser.get('http://localhost:8100/#/side-menu21/addStaff');
-      createProfileButton = element(by.css('.button.button-assertive.button-block.icon.ion-ios-person-outline'));
+      browser.get('/#/side-menu21/addStaff');
+      createProfileButton = element(by.id('addNewStaff-button112'));
       staffContact = element(by.model('staff.contact'));
       staffRole = element(by.model('staff.role'));
       staffName = element(by.model('staff.name'));

@@ -72,13 +72,13 @@ angular.module('app.controllers', [])
   $scope.submitForm = function(patient) {
     if(patient.patientName && patient.patientDOB
       && patient.HospitalNumber && patient.NHSNumber
-      && patient.patientHeight) {
+      && patient.patientHeight && patient.PreOpWeight) {
       $scope.patients = formData.addPatient(patient);
       $state.go('uCrecovery.patientProfiles');
     } else {
       $ionicPopup.alert({
         title: 'Fill in all the boxes',
-        template: 'Needs name, role, contact and team'
+        template: 'Needs name, DOB, Hospital No., height and weight'
       });
     }
   };

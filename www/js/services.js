@@ -30,6 +30,36 @@ angular.module('app.services', [])
       }
     ];
 
+    // need to add id to objects
+
+  var patients = [
+    {
+    id: 0,
+    patientName: "Apple-Joe McFee",
+    patientDOB: 19911119,
+    HospitalNumber: "H129994G",
+    NHSNumber: "QS 996GH",
+    patientHeight: 153,
+    BetaBlockers: false,
+    Antibiotic: true,
+    BloodTransfusion: true,
+    Antihypertensive: true
+    },
+    {
+    id: 1,
+    patientName: "Beach-Joe McFee",
+    patientDOB: 19999919,
+    HospitalNumber: "H122224G",
+    NHSNumber: "QS 777GH",
+    patientHeight: 162,
+    BetaBlockers: true,
+    Antibiotic: false,
+    BloodTransfusion: false,
+    Antihypertensive: false
+    }
+  ];
+
+
   return {
     addTeam: function(team) {
       teams.push(team);
@@ -44,6 +74,13 @@ angular.module('app.services', [])
     },
     getStaff: function() {
       return staffmems;
+    },
+    getPatients: function() {
+      return patients;
+    },
+    addPatient: function(patient) {
+      patients.push(patient);
+      return patients;
     }
   };
 

@@ -60,6 +60,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('uCrecovery.patientProfile', {
+    url: '/patientProfile/:id',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/patientProfiles.html',
+        controller: 'patientProfilesCtrl'
+      }
+    }
+  })
+
   .state('uCrecovery', {
     url: '/side-menu21',
     templateUrl: 'templates/uCrecovery.html',

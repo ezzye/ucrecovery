@@ -51,8 +51,8 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('patientProfilesCtrl', function($scope) {
-
+.controller('patientProfilesCtrl', function($scope,formData) {
+  $scope.patients = formData.getPatients();
 })
 
 .controller('andyAppleCtrl', function($scope) {
@@ -67,8 +67,21 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('addNewPatientCtrl', function($scope) {
-
+.controller('addNewPatientCtrl', function($scope,$state,$ionicPopup,formData) {
+  $scope.patient = {};
+  $scope.submitForm = function(patient) {
+    if(patient.patientName && patient.patientDOB
+      && patient.HospitalNumber && patient.NHSNumber
+      && patient.patientHeight) {
+      $scope.patients = formData.addPatient(patient);
+      $state.go('uCrecovery.patientProfiles');
+    } else {
+      $ionicPopup.alert({
+        title: 'Fill in all the boxes',
+        template: 'Needs name, role, contact and team'
+      });
+    }
+  };
 })
 
 .controller('staffProfilesCtrl', function($scope,formData) {

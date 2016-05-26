@@ -1,66 +1,43 @@
 <ion-view title="Add New Patient" id="page18">
     <ion-content padding="true" class="has-header">
-        <form class="list">
-            <h4 id="addNewPatient-heading20" style="color:#000000;">Patient Information</h4>
-            <ion-item>Name</ion-item>
-            <label class="item item-select" name="Patient DOB">
+        <form id="addNewPatient-form18" class="list ">
+            <h4 id="addNewPatient-heading20" style="color:#000000;" class=" ">Patient Information</h4>
+            <label class="item item-input " id="addNewPatient-input14" name="patientName">
+                <span class="input-label">Full Name</span>
+                <input type="text" placeholder="">
+            </label>
+            <label class="item item-input " id="addNewPatient-input15" name="patientDOB">
                 <span class="input-label">DOB</span>
-                <select>
-                    <option>01/01/1950</option>
-                </select>
+                <input type="date" placeholder="dd/mm/yyyy">
             </label>
-            <ion-item>Hospital Number</ion-item>
-            <ion-item>NHS Number</ion-item>
-            <ion-item>Height</ion-item>
-            <ion-item>Pre-Op weight</ion-item>
-            <div class="spacer" style="width: 300px; height: 24px;"></div>
-            <h4 id="addNewPatient-heading21" style="color:#000000;">Medications</h4>
-            <ion-toggle toggle-class="toggle-positive" ng-checked="true">Beta Blockers</ion-toggle>
-            <label class="item item-select" name="Antibiotic Type">
-                <span class="input-label">Type</span>
-                <select>
-                    <option>Lisinopril</option>
-                </select>
+            <label class="item item-input " id="addNewPatient-input16" name="HospitalNumber">
+                <span class="input-label">Hospital Number</span>
+                <input type="text" placeholder="">
             </label>
-            <div class="spacer" style="width: 300px; height: 24px;"></div>
-            <ion-toggle toggle-class="toggle-positive" ng-checked="true">Blood Transfusion</ion-toggle>
-            <label class="item item-select">
-                <span class="input-label">Date of:</span>
-                <select>
-                    <option>Before 1992</option>
-                    <option>After 1992</option>
-                </select>
+            <label class="item item-input " id="addNewPatient-input17" name="NHSNumber">
+                <span class="input-label">NHS Number</span>
+                <input type="text" placeholder="">
+            </label>
+            <label class="item item-input " id="addNewPatient-input18" name="patientHeight">
+                <span class="input-label">Height</span>
+                <input type="text" placeholder="cm">
+            </label>
+            <label class="item item-input " id="addNewPatient-input19" name="PreOpWeight">
+                <span class="input-label">Weight</span>
+                <input type="text" placeholder="kg">
             </label>
             <div class="spacer" style="width: 300px; height: 24px;"></div>
-            <ion-toggle toggle-class="toggle-positive" ng-checked="true">Antibiotics</ion-toggle>
-            <label class="item item-select" name="Antibiotic Type">
-                <span class="input-label">Type</span>
-                <select>
-                    <option>Lisinopril</option>
-                </select>
-            </label>
+            <h4 id="addNewPatient-heading21" style="color:#000000;" class=" ">Medications</h4>
+            <ion-toggle toggle-class="toggle-positive" id="addNewPatient-toggle38" name="BetaBlockers" class=" ">Beta Blockers</ion-toggle>
             <div class="spacer" style="width: 300px; height: 24px;"></div>
-            <ion-toggle toggle-class="toggle-positive" ng-checked="true">Antihypertensive</ion-toggle>
-            <ion-list></ion-list>
-            <label class="item item-select" name="Antibiotic Type">
-                <span class="input-label">Type</span>
-                <select>
-                    <option>Lisinopril</option>
-                </select>
-            </label>
+            <ion-toggle toggle-class="toggle-positive" id="addNewPatient-toggle39" name="BloodTransfusion" class=" ">Blood Transfusion</ion-toggle>
             <div class="spacer" style="width: 300px; height: 24px;"></div>
-            <ion-toggle toggle-class="toggle-positive" ng-checked="true">Ibuprofen</ion-toggle>
-            <ion-toggle toggle-class="toggle-positive" name="Ibuprofen 2pm">2pm</ion-toggle>
-            <ion-toggle toggle-class="toggle-positive" ng-checked="true" name="Ibuprofen 7pm">7pm</ion-toggle>
+            <ion-toggle toggle-class="toggle-positive" id="addNewPatient-toggle40" name="Antibiotic" class=" ">Antibiotics</ion-toggle>
             <div class="spacer" style="width: 300px; height: 24px;"></div>
-            <ion-toggle toggle-class="toggle-positive" ng-checked="true">PRN</ion-toggle>
-            <ion-toggle toggle-class="toggle-positive" name="PRN 1">PRN 1</ion-toggle>
-            <ion-toggle toggle-class="toggle-positive" name="PRN 2">PRN 2</ion-toggle>
-            <ion-toggle toggle-class="toggle-positive" ng-checked="true" name="PRN 3">PRN 3</ion-toggle>
+            <ion-toggle toggle-class="toggle-positive" id="addNewPatient-toggle41" name="Antihypertensive" class=" ">Antihypertensive</ion-toggle>
+            <ion-list id="addNewPatient-list17" class=" "></ion-list>
             <div class="spacer" style="width: 300px; height: 24px;"></div>
-            <ion-item>Other</ion-item>
-            <button id="addNewPatient-button93" class="button button-positive  button-block">Scan Patient Barcode</button>
-            <a ui-sref="uCrecovery.patientProfiles" id="addNewPatient-button95" class="button button-assertive  button-block icon ion-ios-person">Create Profile</a>
+            <a ui-sref="uCrecovery.patientProfiles" id="addNewPatient-button95" class=" button button-assertive  button-block icon ion-ios-person ">Create Profile</a>
             <div class="spacer" style="height: 100px;"></div>
         </form>
         <ion-list></ion-list>

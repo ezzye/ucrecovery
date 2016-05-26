@@ -5,6 +5,7 @@ angular.module('app.services', [])
 .factory('formData', [function(){
 
   var staffmems = [{
+      id: 0,
       name: "Mr Test",
       role: "Doctor 1",
       contact: "12345",
@@ -12,6 +13,7 @@ angular.module('app.services', [])
       picture: "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png"
       },
       {
+      id: 1,
       name: "Ms Tester",
       role: "Doctor 2",
       contact: "23456",
@@ -27,6 +29,16 @@ angular.module('app.services', [])
       {
       name: "Ward 12",
       location: "Birmingham New Hospital",
+      }
+    ];
+
+  var roles = [{
+      id: 0,
+      name: "Doctor"
+      },
+      {
+      id: 1,
+      name: "Nurse"
       }
     ];
 
@@ -74,6 +86,9 @@ angular.module('app.services', [])
     },
     getStaff: function() {
       return staffmems;
+    },
+    getRoles: function() {
+      return roles;
     },
     getPatients: function() {
       return patients;

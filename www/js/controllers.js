@@ -90,9 +90,11 @@ angular.module('app.controllers', [])
 
 .controller('addNewStaffCtrl', function($scope,$state,$ionicPopup,formData) {
   $scope.staff = {};
+  $scope.roles = formData.getRoles();
   $scope.submitForm = function(staff) {
-    if(staff.name && staff.role && staff.contact) {
-      $scope.staffmems = formData.addStaff(staff);
+    $scope.staffmems = formData.addStaff(staff);
+    if(staff.name && staff.team && staff.contact) {
+      console.log($scope.staff);
       $state.go('uCrecovery.staffProfiles');
     } else {
       $ionicPopup.alert({

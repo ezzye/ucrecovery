@@ -84,6 +84,9 @@ cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
 SQLite plugin only works in ios emulator or in real device.
 
 
+When run on web sqlite plugin cannot be used so mock with non-persistent arrays.
+
+
 Ionic App Base
 =====================
 

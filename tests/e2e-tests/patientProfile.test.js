@@ -11,10 +11,10 @@ describe('Patient profile pages',function() {
       patientHeight,
       PreOpWeight;
 
-  // var BetaBlockers,
-  //     Antibiotic,
-  //     BloodTransfusion,
-  //     Antihypertensive;
+  var BetaBlockers,
+      Antibiotic,
+      BloodTransfusion,
+      Antihypertensive;
 
 
   describe('showing patient profile pages',function() {
@@ -39,14 +39,22 @@ describe('Patient profile pages',function() {
 
     beforeEach(function() {
       browser.get('/#/side-menu21/addPatient');
-      // createProfileButton2 = element(by.id('addNewPatient-button95'));
-
       patientName = element(by.model('patient.patientName'));
       patientDOB = element(by.model('patient.patientDOB'));
       HospitalNumber = element(by.model('patient.HospitalNumber'));
       NHSNumber = element(by.model('patient.NHSNumber'));
       patientHeight = element(by.model('patient.patientHeight'));
       PreOpWeight = element(by.model('patient.PreOpWeight'));
+      BetaBlockers = element(by.model('patient.BetaBlockers'));
+      Antibiotic = element(by.model('patient.Antibiotic'));
+      BloodTransfusion = element(by.model('patient.BloodTransfusion'));
+      Antihypertensive = element(by.model('patient.Antihypertensive'));
+
+
+    });
+
+
+    it('should add a patient profile',function() {
 
       patientName.sendKeys('Gary Norton');
       patientDOB.sendKeys('19031994');
@@ -55,56 +63,68 @@ describe('Patient profile pages',function() {
       patientHeight.sendKeys('180');
       PreOpWeight.sendKeys('85');
 
-
-    });
-
-
-    it('should add a patient profile',function() {
       element.all(by.id('addNewPatient-button95')).get(0).click().then(function() {
         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/patientProfiles');
         expect(element.all(by.repeater('patient in patients')).count()).toEqual(3);
       });
     });
 
-    it('should toggle on form',function() {
+    it('should toggle on form and save new record',function() {
 
-      // BetaBlockers = element(by.model('patient.BetaBlockers'));
-      // Antibiotic = element(by.model('patient.Antibiotic'));
-      // BloodTransfusion = element(by.model('patient.BloodTransfusion'));
-      // Antihypertensive = element(by.model('patient.Antihypertensive'));
+      patientName.sendKeys('Barry Bishbash');
+      patientDOB.sendKeys('01071991');
+      HospitalNumber.sendKeys('Z0000009');
+      NHSNumber.sendKeys('AAA PZ98');
+      patientHeight.sendKeys('111');
+      PreOpWeight.sendKeys('50');
 
       // Example of checked
       // <label>Check me to check both: <input type="checkbox" ng-model="master"></label><br/>
       // <input id="checkSlave" type="checkbox" ng-checked="master" aria-label="Slave input">
-
+      //
       // it('should check both checkBoxes', function() {
       //   expect(element(by.id('checkSlave')).getAttribute('checked')).toBeFalsy();
       //   element(by.model('master')).click();
       //   expect(element(by.id('checkSlave')).getAttribute('checked')).toBeTruthy();
       // });
-
+      //
       //From Patient Form rendered
       //<input type="checkbox" ng-checked="true" checked="checked">
 
-      // element(by.model('BetaBlockers')).click();
-      // element(by.model('Antibiotic')).click();
-      // element(by.model('BloodTransfusion')).click();
-      // element(by.model('Antihypertensive')).click();
+      it('should check both checkBoxes', function() {
+        expect(element(by.id('addNewPatient-toggle38')).getAttribute('checked')).toBeFalsy();
+        expect(element(by.id('addNewPatient-toggle39')).getAttribute('checked')).toBeFalsy();
+        expect(element(by.id('addNewPatient-toggle40')).getAttribute('checked')).toBeFalsy();
+        expect(element(by.id('addNewPatient-toggle41')).getAttribute('checked')).toBeFalsy();
+        element(by.model('BetaBlockers')).click();
+        element(by.model('Antibiotic')).click();
+        element(by.model('BloodTransfusion')).click();
+        element(by.model('Antihypertensive')).click();
+        expect(element(by.id('addNewPatient-toggle38')).getAttribute('checked')).toBeTruthy();
+        expect(element(by.id('addNewPatient-toggle39')).getAttribute('checked')).toBeTruthy();
+        expect(element(by.id('addNewPatient-toggle40')).getAttribute('checked')).toBeTruthy();
+        expect(element(by.id('addNewPatient-toggle41')).getAttribute('checked')).toBeTruthy();
+
+        element.all(by.id('addNewPatient-button95')).get(0).click().then(function() {
+          expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/patientProfiles');
+          expect(element.all(by.repeater('patient in patients')).count()).toEqual(3);
+        });
+      });
 
     });
 
-    // it('should show pop up if all fields not filled in',function() {
-    //   patientName.sendKeys('');
-    //   patientDOB.sendKeys('');
-    //   HospitalNumber.sendKeys('');
-    //   NHSNumber.sendKeys('');
-    //   patientHeight.sendKeys('');
-    //   PreOpWeight.sendKeys('');
-    //   createProfileButton2.click().then(function() {
-    //     expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addPatient');
-    //     var popup = element(by.css('.popup-container.popup-showing.active'));
-    //     expect(popup.isDisplayed()).toBeTruthy();
-    //   });
-    // });
+    it('should show pop up if all fields not filled in',function() {
+      patientName.sendKeys('');
+      patientDOB.sendKeys('');
+      HospitalNumber.sendKeys('');
+      NHSNumber.sendKeys('');
+      patientHeight.sendKeys('');
+      PreOpWeight.sendKeys('');
+      element.all(by.id('addNewPatient-button95')).get(0).click().then(function() {
+        expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addPatient');
+        var popup = element(by.css('.popup-container.popup-showing.active'));
+        expect(popup.isDisplayed()).toBeTruthy();
+      });
+    });
   });
 });

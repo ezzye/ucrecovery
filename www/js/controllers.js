@@ -70,7 +70,7 @@ angular.module('app.controllers', [])
 .controller('addNewPatientCtrl', function($scope,$state,$ionicPopup,formData) {
   $scope.patient = {};
   $scope.submitForm = function(patient) {
-    if(patient.patientName && patient.patientDOB
+    if(patient.patientName
       && patient.HospitalNumber && patient.NHSNumber
       && patient.patientHeight && patient.PreOpWeight) {
       $scope.patients = formData.addPatient(patient);
@@ -91,7 +91,7 @@ angular.module('app.controllers', [])
 .controller('addNewStaffCtrl', function($scope,$state,$ionicPopup,formData) {
   $scope.staff = {};
   $scope.submitForm = function(staff) {
-    if(staff.name && staff.role && staff.contact) {
+    if(staff.name && staff.contact) {
       $scope.staffmems = formData.addStaff(staff);
       $state.go('uCrecovery.staffProfiles');
     } else {

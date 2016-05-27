@@ -2,7 +2,8 @@
 
 describe('Patient profile pages',function() {
 
-  var addNewPatientButton, createProfileButton2;
+  var addNewPatientButton,
+      createProfileButton;
 
   var patientName,
       patientDOB,
@@ -39,6 +40,7 @@ describe('Patient profile pages',function() {
 
     beforeEach(function() {
       browser.get('/#/side-menu21/addPatient');
+      createProfileButton = element.all(by.id('addNewPatient-button95'));
       patientName = element(by.model('patient.patientName'));
       patientDOB = element(by.model('patient.patientDOB'));
       HospitalNumber = element(by.model('patient.HospitalNumber'));
@@ -49,8 +51,6 @@ describe('Patient profile pages',function() {
       Antibiotic = element(by.model('patient.Antibiotic'));
       BloodTransfusion = element(by.model('patient.BloodTransfusion'));
       Antihypertensive = element(by.model('patient.Antihypertensive'));
-
-
     });
 
 
@@ -78,19 +78,6 @@ describe('Patient profile pages',function() {
       patientHeight.sendKeys('111');
       PreOpWeight.sendKeys('50');
 
-      // Example of checked
-      // <label>Check me to check both: <input type="checkbox" ng-model="master"></label><br/>
-      // <input id="checkSlave" type="checkbox" ng-checked="master" aria-label="Slave input">
-      //
-      // it('should check both checkBoxes', function() {
-      //   expect(element(by.id('checkSlave')).getAttribute('checked')).toBeFalsy();
-      //   element(by.model('master')).click();
-      //   expect(element(by.id('checkSlave')).getAttribute('checked')).toBeTruthy();
-      // });
-      //
-      //From Patient Form rendered
-      //<input type="checkbox" ng-checked="true" checked="checked">
-
       it('should check both checkBoxes', function() {
         expect(element(by.id('addNewPatient-toggle38')).getAttribute('checked')).toBeFalsy();
         expect(element(by.id('addNewPatient-toggle39')).getAttribute('checked')).toBeFalsy();
@@ -115,16 +102,17 @@ describe('Patient profile pages',function() {
 
     it('should show pop up if all fields not filled in',function() {
       patientName.sendKeys('');
-      patientDOB.sendKeys('');
       HospitalNumber.sendKeys('');
       NHSNumber.sendKeys('');
       patientHeight.sendKeys('');
       PreOpWeight.sendKeys('');
-      element.all(by.id('addNewPatient-button95')).get(0).click().then(function() {
+
+      createProfileButton.get(0).click().then(function() {
         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addPatient');
         var popup = element(by.css('.popup-container.popup-showing.active'));
         expect(popup.isDisplayed()).toBeTruthy();
       });
+
     });
   });
 });

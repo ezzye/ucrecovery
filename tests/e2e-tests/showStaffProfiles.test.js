@@ -1,6 +1,6 @@
 "use strict";
 
-describe('showing staff profile pages ',function() {
+describe('Showing staff profile pages, ',function() {
 
   var addNewStaffProfileButton, createProfileButton;
   var staffContact, staffRole, staffName;
@@ -49,7 +49,7 @@ describe('showing staff profile pages ',function() {
       staffContact.sendKeys('');
       createProfileButton.click().then(function() {
         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addStaff');
-        var popup = element(by.css('.popup-container.popup-showing.active'));
+        var popup = element(by.css('.popup'));
         expect(popup.isDisplayed()).toBeTruthy();
       });
     });

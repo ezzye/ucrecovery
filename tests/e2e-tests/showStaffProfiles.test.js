@@ -3,7 +3,7 @@
 describe('Showing staff profile pages, ',function() {
 
   var addNewStaffProfileButton, createProfileButton;
-  var staffContact, staffRole, staffName;
+  var staffContact, staffRole, staffTeam, staffName;
 
   describe('Staff profile page',function() {
 
@@ -30,12 +30,14 @@ describe('Showing staff profile pages, ',function() {
       createProfileButton = element(by.id('addNewStaff-button112'));
       staffContact = element(by.model('staff.contact'));
       staffRole = element(by.model('staff.role'));
+      staffTeam = element(by.model('staff.team'));
       staffName = element(by.model('staff.name'));
     });
 
     it('add a staff record', function(){
       staffName.sendKeys('James Brown');
-      staffRole.sendKeys('Doctor');
+      staffRole.$('[value="Doctor"]').click();
+      staffTeam.$('[value="Example Team 1"]').click();
       staffContact.sendKeys('111 999');
       createProfileButton.click().then(function() {
         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/staffProfiles');
@@ -45,7 +47,8 @@ describe('Showing staff profile pages, ',function() {
 
     it('should show pop up if all fields not filled in',function() {
       staffName.sendKeys('');
-      staffRole.sendKeys('');
+      staffRole.$('[value="Doctor"]').click();
+      staffTeam.$('[value="Example Team 1"]').click();
       staffContact.sendKeys('');
       createProfileButton.click().then(function() {
         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addStaff');

@@ -34,6 +34,16 @@ angular.module('app.services', [])
       }
     ];
 
+  var roles = [{
+      id: 0,
+      name: "Doctor"
+      },
+      {
+      id: 1,
+      name: "Nurse"
+      }
+    ];
+
     // need to add id to objects
 
   var patients = [
@@ -78,6 +88,9 @@ angular.module('app.services', [])
     },
     getStaff: function() {
       return staffmems;
+    },
+    getRoles: function() {
+      return roles;
     },
     getPatients: function() {
       return patients;

@@ -22,7 +22,7 @@ describe('addNewStaffCtrl', function() {
 
     scope = $rootScope.$new();
 
-    formDataServiceMock = jasmine.createSpyObj('formService spy',['addStaff']);
+    formDataServiceMock = jasmine.createSpyObj('formService spy',['addStaff','getRoles','getTeams']);
 
     stateMock = jasmine.createSpyObj("$state spy", ['go']);
 
@@ -51,6 +51,6 @@ describe('addNewStaffCtrl', function() {
       expect(stateMock.go).toHaveBeenCalledWith('uCrecovery.staffProfiles');
     });
 
-  })
+  });
 
-})
+});

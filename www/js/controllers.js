@@ -94,7 +94,7 @@ angular.module('app.controllers', [])
   $scope.teams = formData.getTeams();
   $scope.submitForm = function(staff) {
     $scope.staffmems = formData.addStaff(staff);
-    if(staff.name && staff.team && staff.contact) {
+    if(staff.name && staff.contact) {
       $state.go('uCrecovery.staffProfiles');
     } else {
       $ionicPopup.alert({

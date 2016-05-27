@@ -23,10 +23,12 @@ angular.module('app.services', [])
     ];
 
   var teams = [{
+      id: 0,
       name: "Ward Z",
       location: "UCL London",
       },
       {
+      id: 1,
       name: "Ward 12",
       location: "Birmingham New Hospital",
       }

@@ -14,9 +14,7 @@
             <label class="item item-input item-select">
                 <span class="input-label">Team</span>
                 <select ng-model="staff.team">
-                  <option selected>Example Team 1</option>
-                  <option>Example Team 2</option>
-                  <option>Example Team 3</option>
+                  <option ng-repeat="team in teams" value={{team.id}}>{{team.name}}</option>
                 </select>
               </label>
             <label class="item item-input">

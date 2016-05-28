@@ -10,7 +10,7 @@ describe('teamProfilesCtrl specific call to #getTeams',function() {
 
   beforeEach(inject(function($controller,$rootScope) {
     scope = $rootScope.$new();
-    formDataServiceMock = jasmine.createSpyObj('formData spy',['getTeams']);
+    formDataServiceMock = jasmine.createSpyObj('formData spy',['getTeams','getEnvironment']);
     controller = $controller('teamProfilesCtrl',{
       $scope: scope,
       formData: formDataServiceMock

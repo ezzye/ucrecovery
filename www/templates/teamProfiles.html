@@ -1,7 +1,7 @@
 <ion-view title="Team Profiles" id="page11">
     <ion-content padding="true" class="has-header">
+    <p>{{environment}}</p>
         <a ui-sref="uCrecovery.addNewTeam" id="teamProfiles-button64" class="button button-balanced  button-block icon ion-ios-people">Add New Team</a>
-
         <div class="list card" ng-repeat="team in teams">
             <div class="item item-divider">{{team.name}}</div>
             <div class="item item-body">
@@ -10,8 +10,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <div class="list card">
             <div class="item item-divider">Team 2</div>

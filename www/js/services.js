@@ -134,6 +134,10 @@ angular.module('app.services', [])
     addPatient: function(patient) {
       patients.push(patient);
       return patients;
+    },
+    getEnvironment: function() {
+      var environment = isNotMobile ? "web" : "mobile";
+      return environment;
     }
   };
 

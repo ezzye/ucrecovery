@@ -9,6 +9,7 @@ angular.module('app.controllers', [])
 .controller('teamProfilesCtrl', function($scope,$cordovaSQLite,formData) {
 
   $scope.teams = formData.getTeams();
+  $scope.environment = formData.getEnvironment();
 
   // should be service not fat controller but lets start here and test
 

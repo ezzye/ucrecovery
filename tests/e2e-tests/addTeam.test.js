@@ -46,7 +46,7 @@ describe('Team profile pages',function() {
       teamLocation.sendKeys('');
       createProfileButton.click().then(function() {
         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addTeam');
-        var popup = element(by.css('.popup-container.popup-showing.active'));
+        var popup = element(by.css('.popup'));
         expect(popup.isDisplayed()).toBeTruthy();
       });
     });

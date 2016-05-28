@@ -64,8 +64,8 @@ angular.module('app.routes', [])
     url: '/patientProfile/:id',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/patientProfiles.html',
-        controller: 'patientProfilesCtrl'
+        templateUrl: 'templates/patientProfile.html',
+        controller: 'patientProfileCtrl'
       }
     }
   })

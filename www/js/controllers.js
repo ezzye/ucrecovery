@@ -70,15 +70,13 @@ angular.module('app.controllers', [])
 .controller('addNewPatientCtrl', function($scope,$state,$ionicPopup,formData) {
   $scope.patient = {};
   $scope.submitForm = function(patient) {
-    if(patient.patientName && patient.patientDOB
-      && patient.HospitalNumber && patient.NHSNumber
-      && patient.patientHeight) {
+    if(patient.patientName && patient.HospitalNumber && patient.NHSNumber && patient.patientHeight && patient.PreOpWeight) {
       $scope.patients = formData.addPatient(patient);
       $state.go('uCrecovery.patientProfiles');
     } else {
       $ionicPopup.alert({
         title: 'Fill in all the boxes',
-        template: 'Needs name, role, contact and team'
+        template: 'Needs name, DOB, Hospital No., height and weight'
       });
     }
   };
@@ -86,13 +84,16 @@ angular.module('app.controllers', [])
 
 .controller('staffProfilesCtrl', function($scope,formData) {
   $scope.staffmems = formData.getStaff();
+  $scope.roles = formData.getRoles();
 })
 
 .controller('addNewStaffCtrl', function($scope,$state,$ionicPopup,formData) {
   $scope.staff = {};
+  $scope.roles = formData.getRoles();
+  $scope.teams = formData.getTeams();
   $scope.submitForm = function(staff) {
-    if(staff.name && staff.role && staff.contact) {
-      $scope.staffmems = formData.addStaff(staff);
+    $scope.staffmems = formData.addStaff(staff);
+    if(staff.name && staff.contact) {
       $state.go('uCrecovery.staffProfiles');
     } else {
       $ionicPopup.alert({

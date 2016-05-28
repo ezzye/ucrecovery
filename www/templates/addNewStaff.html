@@ -8,17 +8,13 @@
             <label class="item item-input item-select">
                 <span class="input-label">Role</span>
                 <select ng-model="staff.role">
-                  <option selected>Example Role 1</option>
-                  <option>Example Role 2</option>
-                  <option>Example Role 3</option>
+                  <option ng-repeat="role in roles" value={{role.id}}>{{role.name}}</option>
                 </select>
             </label>
             <label class="item item-input item-select">
                 <span class="input-label">Team</span>
                 <select ng-model="staff.team">
-                  <option selected>Example Team 1</option>
-                  <option>Example Team 2</option>
-                  <option>Example Team 3</option>
+                  <option ng-repeat="team in teams" value={{team.id}}>{{team.name}}</option>
                 </select>
               </label>
             <label class="item item-input">
@@ -26,7 +22,7 @@
                 <input type="tel" ng-model="staff.contact" placeholder="">
             </label>
             <a ui-sref="uCrecovery.uploadPhoto" id="staffProfiles-button110" class="button button-balanced  button-block">Add photo</a>
-            <input type="submit" class="button button-assertive  button-block icon ion-ios-person-outline" value="Create Profile">
+            <input type="submit" id="addNewStaff-button112" class="button button-assertive  button-block icon ion-ios-person-outline" value="Create Profile">
         </form>
         <!-- <a ui-sref="uCrecovery.staffProfiles" id="addNewStaff-button112" class="button button-assertive  button-block icon ion-ios-person-outline">Create Profile</a> -->
     </ion-content>

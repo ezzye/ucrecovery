@@ -70,9 +70,7 @@ angular.module('app.controllers', [])
 .controller('addNewPatientCtrl', function($scope,$state,$ionicPopup,formData) {
   $scope.patient = {};
   $scope.submitForm = function(patient) {
-    if(patient.patientName
-      && patient.HospitalNumber && patient.NHSNumber
-      && patient.patientHeight && patient.PreOpWeight) {
+    if(patient.patientName && patient.HospitalNumber && patient.NHSNumber && patient.patientHeight && patient.PreOpWeight) {
       $scope.patients = formData.addPatient(patient);
       $state.go('uCrecovery.patientProfiles');
     } else {
@@ -86,6 +84,7 @@ angular.module('app.controllers', [])
 
 .controller('staffProfilesCtrl', function($scope,formData) {
   $scope.staffmems = formData.getStaff();
+  $scope.roles = formData.getRoles();
 })
 
 .controller('addNewStaffCtrl', function($scope,$state,$ionicPopup,formData) {
@@ -94,7 +93,7 @@ angular.module('app.controllers', [])
   $scope.teams = formData.getTeams();
   $scope.submitForm = function(staff) {
     $scope.staffmems = formData.addStaff(staff);
-    if(staff.name && staff.team && staff.contact) {
+    if(staff.name && staff.contact) {
       $state.go('uCrecovery.staffProfiles');
     } else {
       $ionicPopup.alert({

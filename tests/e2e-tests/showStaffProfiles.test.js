@@ -13,7 +13,13 @@ describe('Showing staff profile pages, ',function() {
     });
 
     it('should show staff profiles on page',function() {
-      expect(element.all(by.repeater('staff in staffmems')).count()).toEqual(2);
+      expect(element.all(by.repeater('staff in staffmems')).count()).toEqual(6);
+    });
+
+    it('should show staff sorted by roles', function() {
+      expect(element.all(by.repeater('role in roles')).count()).toEqual(3);
+      // expect(element.all(by.repeater('role in roles')).row(1).count()).toEqual(1);
+      // expect(element.all(by.repeater('role in roles')).row(2).count()).toEqual(3);
     });
 
     it('should show add new staff profile when add new staff button pressed',function() {
@@ -29,26 +35,26 @@ describe('Showing staff profile pages, ',function() {
       browser.get('/#/side-menu21/addStaff');
       createProfileButton = element(by.id('addNewStaff-button112'));
       staffContact = element(by.model('staff.contact'));
-      staffRole = element(by.model('staff.role'));
-      staffTeam = element(by.model('staff.team'));
+      staffRole = element(by.cssContainingText('option', 'Doctor'));
+      staffTeam = element(by.cssContainingText('option', 'Ward Z'));
       staffName = element(by.model('staff.name'));
     });
 
     it('add a staff record', function(){
       staffName.sendKeys('James Brown');
-      staffRole.$('[value="Doctor"]').click();
-      staffTeam.$('[value="Example Team 1"]').click();
+      staffRole.click();
+      staffTeam.click();
       staffContact.sendKeys('111 999');
       createProfileButton.click().then(function() {
         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/staffProfiles');
-        expect(element.all(by.repeater('staff in staffmems')).count()).toEqual(3);
+        expect(element.all(by.repeater('staff in staffmems')).count()).toEqual(7);
       });
     });
 
     it('should show pop up if all fields not filled in',function() {
       staffName.sendKeys('');
-      staffRole.$('[value="Doctor"]').click();
-      staffTeam.$('[value="Example Team 1"]').click();
+      staffRole.click();
+      staffTeam.click();
       staffContact.sendKeys('');
       createProfileButton.click().then(function() {
         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addStaff');

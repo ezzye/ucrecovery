@@ -106,10 +106,9 @@ describe('Patient profile pages',function() {
       NHSNumber.sendKeys('');
       patientHeight.sendKeys('');
       PreOpWeight.sendKeys('');
-
       createProfileButton.get(0).click().then(function() {
         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addPatient');
-        var popup = element(by.css('.popup-container.popup-showing.active'));
+        var popup = element(by.css('.popup'));
         expect(popup.isDisplayed()).toBeTruthy();
       });
 

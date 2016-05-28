@@ -31,6 +31,7 @@ describe('showing staff profile pages ',function() {
       staffContact = element(by.model('staff.contact'));
       staffRole = element(by.model('staff.role'));
       staffName = element(by.model('staff.name'));
+      addPhotoButton = element(by.css("staffProfiles-button110"));
     });
 
     it('add a staff record', function(){
@@ -52,6 +53,10 @@ describe('showing staff profile pages ',function() {
         var popup = element(by.css('.popup-container.popup-showing.active'));
         expect(popup.isDisplayed()).toBeTruthy();
       });
+    });
+
+    it('should have a button to add a photo', function(){
+      expect(addPhotoButton).toBeDefined;
     });
   });
 

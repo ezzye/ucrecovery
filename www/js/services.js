@@ -2,7 +2,7 @@
 
 angular.module('app.services', [])
 
-.factory('formData', [function(){
+.factory('formData', [SqlData,function(SqlData){
 
   var staffmems = [{
       id: 0,
@@ -117,6 +117,10 @@ angular.module('app.services', [])
     },
     getTeams: function() {
       return teams;
+    },
+    getSqlTeams: function() {
+      var Sqlteams = SqlData.getsqlTeams();
+      return Sqlteams;
     },
     addStaff: function(staff) {
       staffmems.push(staff);

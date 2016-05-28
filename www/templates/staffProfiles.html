@@ -1,16 +1,17 @@
 <ion-view title="Staff Profiles" id="page19">
     <ion-content padding="true" class="has-header">
         <a ui-sref="uCrecovery.addNewStaff" id="staffProfiles-button110" class="button button-balanced  button-block">Add New Staff Profile</a>
-        <h4 id="staffProfiles-heading22" style="color:#000000;">Consultants</h4>
         <form class="list" ">
+        <div ng-repeat="role in roles">
+        <h4 id="staffProfiles-heading24" style="color:#000000;">{{role.name}}</h4>
         <!-- Use ng-repeat = "staff in staffmems"-->
-            <ion-item class="item-thumbnail-left" ng-repeat="staff in staffmems">
+            <ion-item class="item-thumbnail-left" ng-repeat="staff in staffmems | filter: {role: role.id}">
                 <img src="img/dP6h8dpQSY6tDxqMA7OF_Consultant.png">
                 <h2>{{staff.name}}</h2>
                 <p>Contact information: {{staff.contact}}</p>
             </ion-item>
-
-            <ion-item class="item-thumbnail-left">
+        </div>
+<!--             <ion-item class="item-thumbnail-left">
                 <img src="img/dP6h8dpQSY6tDxqMA7OF_Consultant.png">
                 <h2>Consultant 2</h2>
                 <p>Contact information: XXX</p>
@@ -37,7 +38,7 @@
                 <h2>Nurse 2</h2>
                 <p>Contact information: XXX</p>
             </ion-item>
-            <ion-list></ion-list>
+            <ion-list></ion-list> -->
             <div class="spacer" style="height: 100px;"></div>
         </form>
         <ion-list></ion-list>

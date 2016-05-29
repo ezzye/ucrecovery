@@ -7,40 +7,8 @@ angular.module('app.controllers', [])
 })
 
 .controller('teamProfilesCtrl', function($scope,$cordovaSQLite,formData) {
-
   $scope.teams = formData.getTeams();
-
-  // should be service not fat controller but lets start here and test
-
-  $scope.save = function(newMessage) {
-
-    $cordovaSQLite.execute(db, 'INSERT INTO Messages (message) VALUES (?)', [newMessage])
-        .then(function(result) {
-            $scope.statusMessage = "Message saved successful, cheers!";
-        }, function(error) {
-            $scope.statusMessage = "Error on saving: " + error.message;
-        });
-
-  };
-
-  $scope.load = function() {
-
-    // Execute SELECT statement to load message from database.
-    $cordovaSQLite.execute(db, 'SELECT * FROM Messages ORDER BY id DESC')
-        .then(
-            function(result) {
-
-                if (result.rows.length > 0) {
-                    $scope.newMessage = result.rows.item(0).message;
-                    $scope.statusMessage = "Message loaded successful, cheers!  " + $scope.newMessage;
-                }
-            },
-            function(error) {
-                $scope.statusMessage = "Error on loading: " + error.message;
-            }
-        );
-    };
-
+  $scope.environment = formData.getEnvironment();
 })
 
 .controller('patientDataCtrl', function($scope) {

@@ -54,8 +54,6 @@ describe('Showing staff profile pages, ',function() {
 
     it('should show pop up if all fields not filled in',function() {
       staffName.sendKeys('');
-      staffRole.click();
-      staffTeam.click();
       staffContact.sendKeys('');
       createProfileButton.click().then(function() {
         expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/addStaff');

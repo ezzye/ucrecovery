@@ -38,7 +38,6 @@ describe('Showing staff profile pages, ',function() {
       staffRole = element(by.cssContainingText('option', 'Doctor'));
       staffTeam = element(by.cssContainingText('option', 'Ward Z'));
       staffName = element(by.model('staff.name'));
-      addPhotoButton = element(by.css("staffProfiles-button110"));
     });
 
     it('add a staff record', function(){
@@ -63,6 +62,7 @@ describe('Showing staff profile pages, ',function() {
     });
 
     it('should have a button to add a photo', function(){
+      var addPhotoButton = element(by.css("staffProfiles-button110"));
       expect(addPhotoButton).toBeDefined;
     });
   });

@@ -65,6 +65,13 @@ describe('Showing staff profile pages, ',function() {
       var addPhotoButton = element(by.css("staffProfiles-button110"));
       expect(addPhotoButton).toBeDefined;
     });
+
+    it('should show the Upload Photo profile when the "Add photo" button is clicked', function(){
+      var addPhotoButton = element(by.css("staffProfiles-button110"));
+      addPhotoButton.click().then(function(){
+        expect(browser.getLocationAbsUrl()).toMatch('/uploadPhoto')
+      });
+    });
   });
 
 

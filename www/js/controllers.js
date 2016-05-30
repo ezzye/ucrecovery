@@ -7,7 +7,7 @@ angular.module('app.controllers', [])
 })
 
 .controller('teamProfilesCtrl', function($scope,$cordovaSQLite,formData) {
-  $scope.teams = isNotMobile ? formData.getTeams() : formData.getSqlTeams();
+  $scope.teams = formData.getTeams();
   $scope.environment = formData.getEnvironment();
 })
 

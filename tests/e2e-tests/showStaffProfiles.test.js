@@ -4,6 +4,7 @@ describe('Showing staff profile pages, ',function() {
 
   var addNewStaffProfileButton, createProfileButton;
   var staffContact, staffRole, staffTeam, staffName;
+  var addPhotoButton;
 
   describe('Staff profile page',function() {
 
@@ -38,6 +39,7 @@ describe('Showing staff profile pages, ',function() {
       staffRole = element(by.cssContainingText('option', 'Doctor'));
       staffTeam = element(by.cssContainingText('option', 'Ward Z'));
       staffName = element(by.model('staff.name'));
+      addPhotoButton = element(by.id("staffProfiles-button110"));
     });
 
     it('add a staff record', function(){
@@ -62,12 +64,10 @@ describe('Showing staff profile pages, ',function() {
     });
 
     it('should have a button to add a photo', function(){
-      var addPhotoButton = element(by.css("staffProfiles-button110"));
       expect(addPhotoButton).toBeDefined;
     });
 
     it('should show the Upload Photo profile when the "Add photo" button is clicked', function(){
-      var addPhotoButton = element(by.css("staffProfiles-button110"));
       addPhotoButton.click().then(function(){
         expect(browser.getLocationAbsUrl()).toMatch('/uploadPhoto')
       });

@@ -12,6 +12,10 @@
     "module": false,
     "inject": false,
     "controller": false,
-    "jasmine": false
+    "jasmine": false,
+    "console": false,
+    "db": false,
+    "isNotMobile": false,
+    "$cordovaSQLite": false
   }
 }

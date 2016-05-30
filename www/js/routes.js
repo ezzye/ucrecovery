@@ -136,6 +136,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('uCrecovery.uploadPhoto', {
+    url: '/uploadPhoto',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/uploadPhoto.html',
+        controller: 'uploadPhotoCtrl'
+      }
+    }
+  })
+
   .state('uCrecovery.addNewTeam', {
     url: '/addTeam',
     views: {

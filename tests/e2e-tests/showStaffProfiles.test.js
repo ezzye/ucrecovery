@@ -69,7 +69,8 @@ describe('Showing staff profile pages, ',function() {
 
     it('should show the Upload Photo profile when the "Add photo" button is clicked', function(){
       addPhotoButton.click().then(function(){
-        expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/uploadPhoto')
+        expect(browser.getLocationAbsUrl()).toMatch('/side-menu21/uploadPhoto');
+        expect(page).toHaveContent('Upload your photo!')
       });
     });
   });

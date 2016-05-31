@@ -308,9 +308,9 @@ angular.module('app.services', [])
             teams.push(team);
             console.log(team);
           }
-          console.log("Select id works" + resultSet.rows.item(0).id);
-          console.log("Select name works" + resultSet.rows.item(0).name);
-          console.log("Select location works" + resultSet.rows.item(0).location);
+          console.log("Select id works " + resultSet.rows.item(0).id.toString());
+          console.log("Select name works " + resultSet.rows.item(0).name);
+          console.log("Select location works " + resultSet.rows.item(0).location);
           return teams;
         },
         function (tx, error) {

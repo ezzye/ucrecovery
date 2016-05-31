@@ -297,18 +297,21 @@ angular.module('app.services', [])
         var query = "SELECT * FROM teams";
         console.log(query);
         db.executeSql(query,[],function (resultSet) {
-          // for(var x = 0; x < resultSet.rows.length; x++) {
-          //   var team = {};
-          //   team.id = resultSet.rows.item(x).id;
-          //   console.log(team.id);
-          //   team.name = resultSet.rows.item(x).name;
-          //   console.log(team.name);
-          //   team.location = resultSet.rows.item(x).location;
-          //   console.log(team.location);
-          //   teams.push(team);
-          //   console.log(team);
-          // }
+          for(var x = 0; x < resultSet.rows.length; x++) {
+            var team = {};
+            team.id = resultSet.rows.item(x).id;
+            console.log(team.id);
+            team.name = resultSet.rows.item(x).name;
+            console.log(team.name);
+            team.location = resultSet.rows.item(x).location;
+            console.log(team.location);
+            teams.push(team);
+            console.log(team);
+          }
+          console.log("Select id works" + resultSet.rows.item(0).id);
           console.log("Select name works" + resultSet.rows.item(0).name);
+          console.log("Select location works" + resultSet.rows.item(0).location);
+          return teams;
         },
         function (tx, error) {
             console.log('SELECT error: ' + error.message);

@@ -8,6 +8,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var isNotMobile = null;
+var db;
 
 angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
 .run(function($ionicPlatform, $cordovaSQLite) {
@@ -33,17 +34,49 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
 
     try {
 
-      var db = window.sqlitePlugin.openDatabase({ name: 'my.db', location: 'default' }, function () {
-        db.transaction(function (tx) {
-            tx.executeSql('CREATE TABLE teams (id,name,location)');
-        }, function (error) {
-            console.log('transaction error: ' + error.message);
-        }, function () {
-            console.log('transaction ok');
+      window.sqlitePlugin.deleteDatabase({name: 'my.db', location: 'default'}, function() {console.log("delete success");}, function(err) {console.log("delete success" + JSON.stringify(err));});
+
+      db = window.sqlitePlugin.openDatabase({ name: 'my.db', location: 'default' }, function () {
+
+        db.sqlBatch([
+          'DROP TABLE IF EXISTS teams',
+          'CREATE TABLE teams (id,name,location)',
+          [ 'INSERT INTO teams VALUES (?,?,?)', [0,'test team xxx','UCL test ward'] ],
+        ], function() {
+          db.executeSql('SELECT * FROM teams', [], function (resultSet) {
+            console.log('Sample column value: ' + resultSet.rows.item(0).name);
+          });
+        }, function(error) {
+          console.log('Populate table error: ' + error.message);
         });
+
       }, function (error) {
-        console.log('Open database ERROR: ' + JSON.stringify(error));
+          console.log('Open database ERROR: ' + JSON.stringify(error));
       });
+
+      // window.sqlitePlugin.echoTest(function() {
+      //   console.log('transaction ok -- echo Test');
+      // }, function(err) {
+      //     console.log('echo Test ERROR: ' + JSON.stringify(err));
+      // });
+
+      // window.sqlitePlugin.selfTest(function() {
+      //   console.log(' ***************************** transaction ok --- self Test *****************************');
+      // }, function(err) {
+      //   console.log('***************************** self Test ERROR: ' + JSON.stringify(err));
+      // });
+
+      // db = window.sqlitePlugin.openDatabase({ name: 'my.db', location: 'default' }, function () {
+      //   db.transaction(function (tx) {
+      //       tx.executeSql('CREATE TABLE teams (id,name,location)');
+      //   }, function (error) {
+      //       console.log('transaction error: ' + error.message);
+      //   }, function () {
+      //       console.log('transaction ok');
+      //   });
+      // }, function (error) {
+      //   console.log('Open database ERROR: ' + JSON.stringify(error));
+      // });
 
       // $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Messages (id INTEGER PRIMARY KEY AUTOINCREMENT, message TEXT)');
 

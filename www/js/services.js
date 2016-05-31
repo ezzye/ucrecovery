@@ -288,32 +288,33 @@ angular.module('app.services', [])
     //       console.error(error);
     //     }
     //   );
-    getTeams: function() {
-      return teams;
-    },
     // getTeams: function() {
-    //   var teams = [];
-    //   db.transaction(function (tx) {
-    //     var query = "SELECT * FROM teams ORDER BY id ASC";
-    //     tx.executeSql(query,function (tx, resultSet) {
-    //       for(var x = 0; x < resultSet.rows.length; x++) {
-    //         var team = {};
-    //         team.id = resultSet.rows.item(x).id;
-    //         team.name = resultSet.rows.item(x).name;
-    //         team.location = resultSet.rows.item(x).location;
-    //         teams.push(team);
-    //       }
-    //     },
-    //     function (tx, error) {
-    //         console.log('SELECT error: ' + error.message);
-    //     });
-    //   }, function (error) {
-    //       console.log('transaction error: ' + error.message);
-    //   }, function () {
-    //       console.log('transaction ok');
-    //       return teams;
-    //   });
+    //   return teams;
     // },
+    getTeams: function() {
+      var teams = [];
+
+        var query = "SELECT * FROM teams";
+        console.log(query);
+        db.executeSql(query,[],function (resultSet) {
+          // for(var x = 0; x < resultSet.rows.length; x++) {
+          //   var team = {};
+          //   team.id = resultSet.rows.item(x).id;
+          //   console.log(team.id);
+          //   team.name = resultSet.rows.item(x).name;
+          //   console.log(team.name);
+          //   team.location = resultSet.rows.item(x).location;
+          //   console.log(team.location);
+          //   teams.push(team);
+          //   console.log(team);
+          // }
+          console.log("Select name works" + resultSet.rows.item(0).name);
+        },
+        function (tx, error) {
+            console.log('SELECT error: ' + error.message);
+        });
+
+    },
     addTeam: function(team) {
       teams.push(team);
       return teams;

@@ -7,7 +7,15 @@ angular.module('app.controllers', [])
 })
 
 .controller('teamProfilesCtrl', function($scope,$cordovaSQLite,formData) {
-  $scope.teams = formData.getTeams();
+  formData.getTeams(function(teams) {
+    $scope.teams = teams;
+    console.log($scope.teams);
+  });
+  // console.log(formData.getTeams());
+
+  // console.log($scope.teams[0].id);
+  // console.log($scope.teams[0].name);
+  // console.log($scope.teams[0].location);
   $scope.environment = formData.getEnvironment();
 })
 

@@ -3,7 +3,9 @@
 angular.module('app.services', [])
 
 .factory('formData', ['objectData','sqlData',function(objectData,sqlData){
+  console.log(isNotMobile);
   if(isNotMobile) {
+    console.log(isNotMobile);
     return objectData;
   } else {
     return sqlData;
@@ -122,8 +124,8 @@ angular.module('app.services', [])
       teams.push(team);
       return teams;
     },
-    getTeams: function() {
-      return teams;
+    getTeams: function(callbackFn) {
+      callbackFn(teams);
     },
     addStaff: function(staff) {
       staffmems.push(staff);
@@ -200,18 +202,19 @@ angular.module('app.services', [])
       picture: "img/ep8SJoL3RZ6EqXtn74g7_Junior1.png"
       }
     ];
+  var teams = [];
 
-  var teams = [{
-      id: 0,
-      name: "Ward Z",
-      location: "UCL London",
-      },
-      {
-      id: 1,
-      name: "Ward 12",
-      location: "Birmingham New Hospital",
-      }
-    ];
+  // var teams = [{
+  //     id: 0,
+  //     name: "Ward Z",
+  //     location: "UCL London",
+  //     },
+  //     {
+  //     id: 1,
+  //     name: "Ward 12",
+  //     location: "Birmingham New Hospital",
+  //     }
+  //   ];
 
   var roles = [{
       id: 0,
@@ -256,6 +259,41 @@ angular.module('app.services', [])
     }
   ];
 
+  var getTeams = function(callbackFn) {
+
+      // window.sqlitePlugin.openDatabase({name: 'my.db', location: 'default'}, function(db) {
+      db.transaction(function(tx) {
+      var team = {};
+        tx.executeSql('SELECT * FROM teams',[],function (tx,resultSet) {
+          // for(var x = 0; x < resultSet.rows.length; x++) {
+          //   var team = {};
+            team.id = resultSet.rows.item(0).id;
+            console.log(team.id);
+            team.name = resultSet.rows.item(0).name;
+            console.log(team.name);
+            team.location = resultSet.rows.item(0).location;
+            console.log(team.location);
+            teams.push(team);
+            console.log(team);
+          // }
+          console.log("NUMBER of rows" + resultSet.rows.length);
+          console.log("Select id works " + resultSet.rows.item(0).id);
+          console.log("Select name works " + resultSet.rows.item(0).name);
+          console.log("Select location works " + resultSet.rows.item(0).location);
+        },
+        function (error) {
+            console.log('SELECT error: ' + error.message);
+        });
+
+      }, function(error) {
+        console.log('Open database ERROR: ' + JSON.stringify(error));
+      }, function() {
+        console.log('transaction ok');
+        callbackFn(teams);
+      });
+    // });
+  };
+
   return {
     // addTeam: function(team) {
     //   var name = team.name;
@@ -291,33 +329,7 @@ angular.module('app.services', [])
     // getTeams: function() {
     //   return teams;
     // },
-    getTeams: function() {
-      var teams = [];
-
-        var query = "SELECT * FROM teams";
-        console.log(query);
-        db.executeSql(query,[],function (resultSet) {
-          for(var x = 0; x < resultSet.rows.length; x++) {
-            var team = {};
-            team.id = resultSet.rows.item(x).id;
-            console.log(team.id);
-            team.name = resultSet.rows.item(x).name;
-            console.log(team.name);
-            team.location = resultSet.rows.item(x).location;
-            console.log(team.location);
-            teams.push(team);
-            console.log(team);
-          }
-          console.log("Select id works " + resultSet.rows.item(0).id.toString());
-          console.log("Select name works " + resultSet.rows.item(0).name);
-          console.log("Select location works " + resultSet.rows.item(0).location);
-          return teams;
-        },
-        function (tx, error) {
-            console.log('SELECT error: ' + error.message);
-        });
-
-    },
+    getTeams: getTeams,
     addTeam: function(team) {
       teams.push(team);
       return teams;

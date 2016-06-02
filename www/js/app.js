@@ -9,6 +9,8 @@
 // 'starter.controllers' is found in controllers.js
 var isNotMobile = false;
 var db;
+var mobileCount = 0;
+var webCount = 0;
 
 angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
 .run(function($ionicPlatform, $cordovaSQLite) {
@@ -40,11 +42,15 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
 
         db.sqlBatch([
           'DROP TABLE IF EXISTS teams',
-          'CREATE TABLE teams (id,name,location)',
+          'CREATE TABLE teams (id integer, name text,location text)',
           [ 'INSERT INTO teams VALUES (?,?,?)', [0,'test team xxx','UCL test ward'] ],
         ], function() {
+          mobileCount++;
           db.executeSql('SELECT * FROM teams', [], function (resultSet) {
+            console.log('Sample column value: ' + resultSet.rows.item(0).id);
             console.log('Sample column value: ' + resultSet.rows.item(0).name);
+            console.log('Sample column value: ' + resultSet.rows.item(0).location);
+            console.log('Sample column value: ' + resultSet.rows);
           });
         }, function(error) {
           console.log('Populate table error: ' + error.message);

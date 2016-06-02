@@ -13,6 +13,8 @@ describe('addNewTeamCtrl',function() {
   team.name = "test name";
   team.location = "London UCL";
 
+  var callbackfn = function() {};
+
 
   beforeEach(module('app'));
 
@@ -26,7 +28,8 @@ describe('addNewTeamCtrl',function() {
       $scope: scope,
       $state: stateMock,
       $ionicPopup: ionicPopupMock,
-      formData: formDataServiceMock
+      formData: formDataServiceMock,
+
     });
 
   }));
@@ -39,7 +42,7 @@ describe('addNewTeamCtrl',function() {
   describe('#submitForm', function() {
 
     it('call addTeam on formData service', function() {
-      expect(formDataServiceMock.addTeam).toHaveBeenCalledWith(team);
+      expect(formDataServiceMock.addTeam).toHaveBeenCalledWith(team,callbackfn);
     });
 
       describe('when form is submitted', function() {
@@ -60,4 +63,8 @@ describe('addNewTeamCtrl',function() {
     });
   });
 });
+
+
+[ Object({ name: 'test name', location: 'London UCL' }), Function ]
+[ Object({ name: 'test name', location: 'London UCL' }), Function ]
 

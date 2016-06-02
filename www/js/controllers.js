@@ -81,7 +81,7 @@ angular.module('app.controllers', [])
 })
 
 .controller('uploadPhotoCtrl', function($scope) {
-  
+  var options = {};
 })
 
 .controller('addNewTeamCtrl', function($scope,$state,$ionicPopup,formData) {

@@ -1,7 +1,22 @@
 "use strict";
 
 describe('uploadPhotoCtrl', function(){
-	it('has an options object', function(){
-		expect(options).toBeDefined;
+
+	var scope;
+
+	var controller;
+
+	beforeEach(module('app'));
+
+	beforeEach(inject(function($controller, $rootScope){
+		scope = $rootScope.$new();
+
+		controller = $controller('uploadPhotoCtrl', {
+			$scope: scope
+		});
+	}));
+
+	it('has an upload function', function(){
+		expect($scope.upload).toBeAFunction;
 	});
 });

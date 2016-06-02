@@ -120,9 +120,9 @@ angular.module('app.services', [])
 
 
   return {
-    addTeam: function(team) {
+    addTeam: function(team,callbackFn) {
       teams.push(team);
-      return teams;
+      callbackFn(teams);
     },
     getTeams: function(callbackFn) {
       callbackFn(teams);
@@ -202,19 +202,8 @@ angular.module('app.services', [])
       picture: "img/ep8SJoL3RZ6EqXtn74g7_Junior1.png"
       }
     ];
-  var teams = [];
 
-  // var teams = [{
-  //     id: 0,
-  //     name: "Ward Z",
-  //     location: "UCL London",
-  //     },
-  //     {
-  //     id: 1,
-  //     name: "Ward 12",
-  //     location: "Birmingham New Hospital",
-  //     }
-  //   ];
+  var teams = [];
 
   var roles = [{
       id: 0,
@@ -260,26 +249,59 @@ angular.module('app.services', [])
   ];
 
   var getTeams = function(callbackFn) {
+    teams = [];
+    db.transaction(function(tx) {
+    var team;
+      tx.executeSql('SELECT * FROM teams',[],function (tx,resultSet) {
+        for(var x = 0; x < resultSet.rows.length; x++) {
+          team = {};
+          team.id = resultSet.rows.item(x).id;
+          team.name = resultSet.rows.item(x).name;
+          team.location = resultSet.rows.item(x).location;
+          teams.push(team);
+          console.log(teams);
+        }
+      },
+      function (error) {
+          console.log('SELECT error: ' + error.message);
+      });
 
-      // window.sqlitePlugin.openDatabase({name: 'my.db', location: 'default'}, function(db) {
+    }, function(error) {
+      console.log('Open database ERROR: ' + JSON.stringify(error));
+    }, function() {
+      console.log('transaction ok');
+      callbackFn(teams);
+      console.log(teams);
+    });
+  };
+
+  var addTeam = function(team,callbackFn) {
       db.transaction(function(tx) {
-      var team = {};
+        var id = mobileCount;
+        var name = team.name;
+        var location = team.location;
+        var tempteam;
+        tx.executeSql('INSERT INTO teams VALUES (?,?,?)',[id, name, location],function (tx,resultSet) {
+            console.log('resultSet.insertId: ' + resultSet.insertId);
+            console.log('resultSet.rowsAffected: ' + resultSet.rowsAffected);
+        },
+        function (error) {
+            console.log('INSERT error: ' + error.message);
+        });
+
         tx.executeSql('SELECT * FROM teams',[],function (tx,resultSet) {
-          // for(var x = 0; x < resultSet.rows.length; x++) {
-          //   var team = {};
-            team.id = resultSet.rows.item(0).id;
-            console.log(team.id);
-            team.name = resultSet.rows.item(0).name;
-            console.log(team.name);
-            team.location = resultSet.rows.item(0).location;
-            console.log(team.location);
-            teams.push(team);
-            console.log(team);
-          // }
-          console.log("NUMBER of rows" + resultSet.rows.length);
-          console.log("Select id works " + resultSet.rows.item(0).id);
-          console.log("Select name works " + resultSet.rows.item(0).name);
-          console.log("Select location works " + resultSet.rows.item(0).location);
+          teams.length = 0;
+          console.log('SELECT in add team value of teas is: ' + teams);
+
+
+          for(var x = 0; x < resultSet.rows.length; x++) {
+            tempteam = {};
+            tempteam.id = resultSet.rows.item(x).id;
+            tempteam.name = resultSet.rows.item(x).name;
+            tempteam.location = resultSet.rows.item(x).location;
+            teams.push(tempteam);
+            console.log( "for loop adding team "+ teams);
+          }
         },
         function (error) {
             console.log('SELECT error: ' + error.message);
@@ -289,51 +311,17 @@ angular.module('app.services', [])
         console.log('Open database ERROR: ' + JSON.stringify(error));
       }, function() {
         console.log('transaction ok');
+        console.log(teams);
+        mobileCount++;
         callbackFn(teams);
       });
-    // });
-  };
+    };
+
 
   return {
-    // addTeam: function(team) {
-    //   var name = team.name;
-    //   var location = team.location;
-    //   $cordovaSQLite.execute(db, 'INSERT INTO teams (name, location) VALUES (?,?)', [name,location])
-    //     .then(function(result) {
-    //       console.log("insertId: " + result.insertId);
-    //     }, function (error) {
-    //       console.error(error);
-    //   });
-    // },
-    //   $cordovaSQLite.execute(db, 'SELECT * FROM teams ORDER BY id ASC')
-    //   .then(
-    //     function(result) {
-    //       if (result.rows.length > 0) {
-    //         var teams = [];
-    //         for(var i = 0; i < result.rows.length; i++) {
-    //           var team = {};
-    //           team.id = result.rows.item(i).id;
-    //           team.name = result.rows.item(i).name;
-    //           team.location = result.rows.item(i).location;
-    //           teams.push(team);
-    //         }
-    //         return teams;
-    //       } else {
-    //         console.log("No teams");
-    //       }
-    //     },
-    //     function(error) {
-    //       console.error(error);
-    //     }
-    //   );
-    // getTeams: function() {
-    //   return teams;
-    // },
+
     getTeams: getTeams,
-    addTeam: function(team) {
-      teams.push(team);
-      return teams;
-    },
+    addTeam: addTeam,
     addStaff: function(staff) {
       staffmems.push(staff);
       return staffmems;

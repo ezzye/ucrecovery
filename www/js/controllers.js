@@ -9,7 +9,6 @@ angular.module('app.controllers', [])
 .controller('teamProfilesCtrl', function($scope,$cordovaSQLite,formData) {
   formData.getTeams(function(teams) {
     $scope.teams = teams;
-    $scope.$apply();
     console.log($scope.teams);
   });
   $scope.environment = formData.getEnvironment();
@@ -62,7 +61,10 @@ angular.module('app.controllers', [])
 .controller('addNewStaffCtrl', function($scope,$state,$ionicPopup,formData) {
   $scope.staff = {};
   $scope.roles = formData.getRoles();
-  $scope.teams = formData.getTeams();
+  formData.getTeams(function(teams) {
+    $scope.teams = teams;
+    console.log($scope.teams);
+  });
   $scope.submitForm = function(staff) {
     $scope.staffmems = formData.addStaff(staff);
     if(staff.name && staff.contact) {
@@ -82,8 +84,7 @@ angular.module('app.controllers', [])
     if(team.name && team.location) {
       formData.addTeam(team,function(teams) {
       $scope.teams = teams;
-      $scope.$apply();
-      });
+    });
       $state.go('uCrecovery.teamProfiles');
     } else {
       $ionicPopup.alert({

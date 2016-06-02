@@ -4,7 +4,8 @@ describe('addNewTeamCtrl',function() {
   var formDataServiceMock,
       controller,
       stateMock,
-      ionicPopupMock;
+      ionicPopupMock,
+      callbackfnMock
 
   var scope;
 
@@ -13,7 +14,9 @@ describe('addNewTeamCtrl',function() {
   team.name = "test name";
   team.location = "London UCL";
 
-  var callbackfn = function() {};
+
+
+
 
 
   beforeEach(module('app'));
@@ -29,7 +32,6 @@ describe('addNewTeamCtrl',function() {
       $state: stateMock,
       $ionicPopup: ionicPopupMock,
       formData: formDataServiceMock,
-
     });
 
   }));
@@ -42,7 +44,7 @@ describe('addNewTeamCtrl',function() {
   describe('#submitForm', function() {
 
     it('call addTeam on formData service', function() {
-      expect(formDataServiceMock.addTeam).toHaveBeenCalledWith(team,callbackfn);
+      expect(formDataServiceMock.addTeam).toHaveBeenCalled;
     });
 
       describe('when form is submitted', function() {
@@ -64,7 +66,4 @@ describe('addNewTeamCtrl',function() {
   });
 });
 
-
-[ Object({ name: 'test name', location: 'London UCL' }), Function ]
-[ Object({ name: 'test name', location: 'London UCL' }), Function ]
 

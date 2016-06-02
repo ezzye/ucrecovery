@@ -259,7 +259,6 @@ angular.module('app.services', [])
           team.name = resultSet.rows.item(x).name;
           team.location = resultSet.rows.item(x).location;
           teams.push(team);
-          console.log(teams);
         }
       },
       function (error) {
@@ -271,7 +270,6 @@ angular.module('app.services', [])
     }, function() {
       console.log('transaction ok');
       callbackFn(teams);
-      console.log(teams);
     });
   };
 
@@ -300,7 +298,6 @@ angular.module('app.services', [])
             tempteam.name = resultSet.rows.item(x).name;
             tempteam.location = resultSet.rows.item(x).location;
             teams.push(tempteam);
-            console.log( "for loop adding team "+ teams);
           }
         },
         function (error) {
@@ -311,7 +308,6 @@ angular.module('app.services', [])
         console.log('Open database ERROR: ' + JSON.stringify(error));
       }, function() {
         console.log('transaction ok');
-        console.log(teams);
         mobileCount++;
         callbackFn(teams);
       });

@@ -118,10 +118,20 @@ angular.module('app.services', [])
     }
   ];
 
+  var idCount = {
+    team: 2,
+    staff: 2,
+    patient: 2
+  };
+
 
   return {
+    getidTeam: function() {
+      return idCount.team;
+    },
     addTeam: function(team,callbackFn) {
       teams.push(team);
+      idCount.team++
       callbackFn(teams);
     },
     getTeams: function(callbackFn) {

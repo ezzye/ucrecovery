@@ -82,6 +82,7 @@ angular.module('app.controllers', [])
   $scope.team = {};
   $scope.submitForm = function(team) {
     if(team.name && team.location) {
+      $scope.team.id = formData.getidTeam();
       formData.addTeam(team,function(teams) {
       $scope.teams = teams;
     });

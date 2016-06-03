@@ -23,7 +23,10 @@ angular.module('app.controllers', [])
 })
 
 .controller('patientProfilesCtrl', function($scope,formData) {
-  $scope.patients = formData.getPatients();
+  formData.getPatients(function(patients) {
+    $scope.patients = patients;
+    console.log($scope.patients);
+  });
 })
 
 .controller('andyAppleCtrl', function($scope) {
@@ -42,7 +45,10 @@ angular.module('app.controllers', [])
   $scope.patient = {};
   $scope.submitForm = function(patient) {
     if(patient.patientName && patient.HospitalNumber && patient.NHSNumber && patient.patientHeight && patient.PreOpWeight) {
-      $scope.patients = formData.addPatient(patient);
+      $scope.patient.id = formData.getidPatient();
+      formData.addPatient(patient,function(patients) {
+      $scope.patients = patients;
+    });
       $state.go('uCrecovery.patientProfiles');
     } else {
       $ionicPopup.alert({
@@ -54,7 +60,10 @@ angular.module('app.controllers', [])
 })
 
 .controller('staffProfilesCtrl', function($scope,formData) {
-  $scope.staffmems = formData.getStaff();
+  formData.getStaff(function(staffmems) {
+    $scope.staffmems = staffmems;
+    console.log($scope.staffmems);
+  });
   $scope.roles = formData.getRoles();
 })
 
@@ -66,8 +75,11 @@ angular.module('app.controllers', [])
     console.log($scope.teams);
   });
   $scope.submitForm = function(staff) {
-    $scope.staffmems = formData.addStaff(staff);
     if(staff.name && staff.contact) {
+      $scope.staff.id = formData.getidStaff();
+      formData.addStaff(staff,function(staffmems) {
+      $scope.staffmems = staffmems;
+    });
       $state.go('uCrecovery.staffProfiles');
     } else {
       $ionicPopup.alert({
@@ -82,6 +94,7 @@ angular.module('app.controllers', [])
   $scope.team = {};
   $scope.submitForm = function(team) {
     if(team.name && team.location) {
+      $scope.team.id = formData.getidTeam();
       formData.addTeam(team,function(teams) {
       $scope.teams = teams;
     });

@@ -30,7 +30,7 @@ angular.module('app.services', [])
       picture: "img/ep8SJoL3RZ6EqXtn74g7_Junior1.png"
       },
       {
-      id: 0,
+      id: 2,
       name: "Mr Test",
       role: "2",
       contact: "12345",
@@ -38,7 +38,7 @@ angular.module('app.services', [])
       picture: "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png"
       },
       {
-      id: 1,
+      id: 3,
       name: "Ms Tester",
       role: "2",
       contact: "23456",
@@ -46,7 +46,7 @@ angular.module('app.services', [])
       picture: "img/ep8SJoL3RZ6EqXtn74g7_Junior1.png"
       },
       {
-      id: 0,
+      id: 4,
       name: "Mr Test",
       role: "0",
       contact: "12345",
@@ -54,7 +54,7 @@ angular.module('app.services', [])
       picture: "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png"
       },
       {
-      id: 1,
+      id: 5,
       name: "Ms Tester",
       role: "2",
       contact: "23456",
@@ -118,31 +118,49 @@ angular.module('app.services', [])
     }
   ];
 
+  var idCount = {
+    team: 2,
+    staff: 6,
+    patient: 2
+  };
+
 
   return {
+    getidTeam: function() {
+      return idCount.team;
+    },
+    getidStaff: function() {
+      return idCount.staff;
+    },
+    getidPatient: function() {
+      return idCount.patient;
+    },
     addTeam: function(team,callbackFn) {
       teams.push(team);
+      idCount.team++
       callbackFn(teams);
     },
     getTeams: function(callbackFn) {
       callbackFn(teams);
     },
-    addStaff: function(staff) {
+    addStaff: function(staff,callbackFn) {
       staffmems.push(staff);
-      return staffmems;
+      idCount.staff++
+      callbackFn(staffmems);
     },
-    getStaff: function() {
-      return staffmems;
+    getStaff: function(callbackFn) {
+      callbackFn(staffmems);
     },
     getRoles: function() {
       return roles;
     },
-    getPatients: function() {
-      return patients;
+    getPatients: function(callbackFn) {
+      callbackFn(patients);
     },
-    addPatient: function(patient) {
+    addPatient: function(patient,callbackFn) {
       patients.push(patient);
-      return patients;
+      idCount.patient++
+      callbackFn(patients);
     },
     getEnvironment: function() {
       var environment = "web";

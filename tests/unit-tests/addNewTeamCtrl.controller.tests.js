@@ -49,7 +49,7 @@ describe('addNewTeamCtrl',function() {
           expect(stateMock.go).toHaveBeenCalledWith('uCrecovery.teamProfiles');
         });
 
-        it('should call getidCount on formService',function() {
+        it('should call getidTeam on formService',function() {
           expect(formDataServiceMock.getidTeam).toHaveBeenCalled();
         });
 

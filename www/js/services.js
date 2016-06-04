@@ -3,6 +3,7 @@
 angular.module('app.services', [])
 
 .factory('formData', ['objectData','sqlData',function(objectData,sqlData){
+
   console.log(isNotMobile);
   if(isNotMobile) {
     console.log(isNotMobile);
@@ -118,12 +119,6 @@ angular.module('app.services', [])
     }
   ];
 
-  var idCount = {
-    team: 2,
-    staff: 6,
-    patient: 2
-  };
-
 
   return {
     getidTeam: function() {
@@ -137,7 +132,6 @@ angular.module('app.services', [])
     },
     addTeam: function(team,callbackFn) {
       teams.push(team);
-      idCount.team++
       callbackFn(teams);
     },
     getTeams: function(callbackFn) {
@@ -145,7 +139,6 @@ angular.module('app.services', [])
     },
     addStaff: function(staff,callbackFn) {
       staffmems.push(staff);
-      idCount.staff++
       callbackFn(staffmems);
     },
     getStaff: function(callbackFn) {
@@ -159,7 +152,6 @@ angular.module('app.services', [])
     },
     addPatient: function(patient,callbackFn) {
       patients.push(patient);
-      idCount.patient++
       callbackFn(patients);
     },
     getEnvironment: function() {
@@ -293,7 +285,7 @@ angular.module('app.services', [])
 
   var addTeam = function(team,callbackFn) {
       db.transaction(function(tx) {
-        var id = mobileCount;
+        var id = team.id;
         var name = team.name;
         var location = team.location;
         var tempteam;
@@ -315,6 +307,7 @@ angular.module('app.services', [])
             tempteam.id = resultSet.rows.item(x).id;
             tempteam.name = resultSet.rows.item(x).name;
             tempteam.location = resultSet.rows.item(x).location;
+            console.log(tempteam);
             teams.push(tempteam);
           }
         },
@@ -326,7 +319,7 @@ angular.module('app.services', [])
         console.log('Open database ERROR: ' + JSON.stringify(error));
       }, function() {
         console.log('transaction ok');
-        mobileCount++;
+        console.log(teams);
         callbackFn(teams);
       });
     };
@@ -352,6 +345,15 @@ angular.module('app.services', [])
     addPatient: function(patient) {
       patients.push(patient);
       return patients;
+    },
+    getidTeam: function() {
+      return idCount.team;
+    },
+    getidStaff: function() {
+      return idCount.staff;
+    },
+    getidPatient: function() {
+      return idCount.patient;
     },
     getEnvironment: function() {
       var environment = "mobile";

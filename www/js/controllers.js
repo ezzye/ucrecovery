@@ -48,6 +48,7 @@ angular.module('app.controllers', [])
       $scope.patient.id = formData.getidPatient();
       formData.addPatient(patient,function(patients) {
       $scope.patients = patients;
+      idCount.patient++;
     });
       $state.go('uCrecovery.patientProfiles');
     } else {
@@ -79,6 +80,7 @@ angular.module('app.controllers', [])
       $scope.staff.id = formData.getidStaff();
       formData.addStaff(staff,function(staffmems) {
       $scope.staffmems = staffmems;
+      idCount.staff++;
     });
       $state.go('uCrecovery.staffProfiles');
     } else {
@@ -97,6 +99,7 @@ angular.module('app.controllers', [])
       $scope.team.id = formData.getidTeam();
       formData.addTeam(team,function(teams) {
       $scope.teams = teams;
+      idCount.team++;
     });
       $state.go('uCrecovery.teamProfiles');
     } else {

@@ -8,9 +8,14 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var isNotMobile = false;
+
 var db;
-var mobileCount = 0;
-var webCount = 0;
+
+var idCount = {
+      team: 2,
+      staff: 6,
+      patient: 2
+};
 
 angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
 .run(function($ionicPlatform, $cordovaSQLite) {
@@ -36,7 +41,7 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
 
     try {
 
-      window.sqlitePlugin.deleteDatabase({name: 'my.db', location: 'default'}, function() {console.log("delete success");}, function(err) {console.log("delete success" + JSON.stringify(err));});
+      // window.sqlitePlugin.deleteDatabase({name: 'my.db', location: 'default'}, function() {console.log("delete success");}, function(err) {console.log("delete error" + JSON.stringify(err));});
 
       db = window.sqlitePlugin.openDatabase({ name: 'my.db', location: 'default' }, function () {
 
@@ -45,62 +50,27 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
           'CREATE TABLE teams (id integer, name text,location text)',
           [ 'INSERT INTO teams VALUES (?,?,?)', [0,'test team xxx','UCL test ward'] ],
         ], function() {
-          mobileCount++;
-          db.executeSql('SELECT * FROM teams', [], function (resultSet) {
-            console.log('Sample column value: ' + resultSet.rows.item(0).id);
-            console.log('Sample column value: ' + resultSet.rows.item(0).name);
-            console.log('Sample column value: ' + resultSet.rows.item(0).location);
-            console.log('Sample column value: ' + resultSet.rows);
+          // mobileCount++;
+          console.log('Find the idCount for team ****************');
+          db.executeSql('SELECT MAX(id) AS idmax FROM teams;', [], function (resultSet) {
+            console.log('----Sample column value: ' + resultSet.rows.item(0).idmax);
+            idCount.team = 1 +resultSet.rows.item(0).idmax;
+            // console.log('Sample column value: ' + resultSet.rows.item(0).name);
+            // console.log('Sample column value: ' + resultSet.rows.item(0).location);
+            console.log("Next is is: " + idCount.team);
+            console.log(resultSet);
           });
         }, function(error) {
-          console.log('Populate table error: ' + error.message);
+          console.log('Populate table ezzy error: ' + error.message);
         });
 
       }, function (error) {
-          console.log('Open database ERROR: ' + JSON.stringify(error));
+          console.log('Open database ezzy ERROR: ' + JSON.stringify(error));
       });
-
-      // window.sqlitePlugin.echoTest(function() {
-      //   console.log('transaction ok -- echo Test');
-      // }, function(err) {
-      //     console.log('echo Test ERROR: ' + JSON.stringify(err));
-      // });
-
-      // window.sqlitePlugin.selfTest(function() {
-      //   console.log(' ***************************** transaction ok --- self Test *****************************');
-      // }, function(err) {
-      //   console.log('***************************** self Test ERROR: ' + JSON.stringify(err));
-      // });
-
-      // db = window.sqlitePlugin.openDatabase({ name: 'my.db', location: 'default' }, function () {
-      //   db.transaction(function (tx) {
-      //       tx.executeSql('CREATE TABLE teams (id,name,location)');
-      //   }, function (error) {
-      //       console.log('transaction error: ' + error.message);
-      //   }, function () {
-      //       console.log('transaction ok');
-      //   });
-      // }, function (error) {
-      //   console.log('Open database ERROR: ' + JSON.stringify(error));
-      // });
-
-      // $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS Messages (id INTEGER PRIMARY KEY AUTOINCREMENT, message TEXT)');
-
-      // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key autoincrement, firstname text, lastname text)");
-
-      // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS teams (id integer primary key autoincrement, name text, location text)");
-
-      // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS staff (id integer primary key autoincrement, first_name text, last_name text, position text, team_id integer)");
-
-      // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS patientDetails (id integer primary key autoincrement, first_name text, last_name text,hospital_number text, NHS_number text, dob DATE, procedure text, in_date DATE, out_date DATE, op_date DATE)");
-
-      // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS patientTreatments (id integer primary key autoincrement, date DATETIME, treatment text, comment text, patient_id integer)");
-
-      // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS patientData (id integer primary key autoincrement, date DATETIME, measurement text, value NUMERIC, patient_id integer)");
 
     } catch (error) {
         isNotMobile = true;
-        console.log(error);
+        console.log("catch error for ezzy" + error);
     }
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

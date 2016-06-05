@@ -46,7 +46,9 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
       db = window.sqlitePlugin.openDatabase({ name: 'my.db', location: 'default' }, function () {
 
         db.sqlBatch([
-          'CREATE TABLE IF NOT EXISTS teams (id integer, name text,location text)'
+          'CREATE TABLE IF NOT EXISTS teams (id integer, name text,location text)',
+          'CREATE TABLE IF NOT EXISTS staffmems (id integer, name text, role integer, contact text, team integer, picture text)',
+          'CREATE TABLE IF NOT EXISTS patients (id integer, patientName text, patientDOB integer, HospitalNumber text, NHSNumber text, patientHeight integer, BetaBlockers integer, Antibiotic integer, BloodTransfusion integer, Antihypertensive integer )'
           // ,[ 'INSERT INTO teams VALUES (?,?,?)', [0,'test team xxx','UCL test ward'] ],
         ],
         function() {

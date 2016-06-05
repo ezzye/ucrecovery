@@ -52,13 +52,28 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
           // ,[ 'INSERT INTO teams VALUES (?,?,?)', [0,'test team xxx','UCL test ward'] ],
         ],
         function() {
-          // mobileCount++;
+
           console.log('Find the idCount for team ****************');
           db.executeSql('SELECT MAX(id) AS idmax FROM teams;', [], function (resultSet) {
-            console.log('----Sample column value: ' + resultSet.rows.item(0).idmax);
+            console.log('----Sample column value for team: ' + resultSet.rows.item(0).idmax);
             idCount.team = resultSet.rows.item(0).idmax ? 1 +resultSet.rows.item(0).idmax : 0;
-            console.log("Next id is: " + idCount.team);
+            console.log("Next team id is: " + idCount.team);
           });
+
+          console.log('Find the idCount for staff ****************');
+          db.executeSql('SELECT MAX(id) AS idmax FROM staffmems;', [], function (resultSet) {
+            console.log('----Sample column value for staffmems: ' + resultSet.rows.item(0).idmax);
+            idCount.staff = resultSet.rows.item(0).idmax ? 1 +resultSet.rows.item(0).idmax : 0;
+            console.log("Next staff id is: " + idCount.staff);
+          });
+
+          console.log('Find the idCount for patient ****************');
+          db.executeSql('SELECT MAX(id) AS idmax FROM patients;', [], function (resultSet) {
+            console.log('----Sample column value for patients: ' + resultSet.rows.item(0).idmax);
+            idCount.patient = resultSet.rows.item(0).idmax ? 1 +resultSet.rows.item(0).idmax : 0;
+            console.log("Next staff id is: " + idCount.patient);
+          });
+
         }, function(error) {
           console.log('Populate table ezzy error: ' + error.message);
         });

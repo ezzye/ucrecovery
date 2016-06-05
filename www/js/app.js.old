@@ -46,16 +46,19 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
       db = window.sqlitePlugin.openDatabase({ name: 'my.db', location: 'default' }, function () {
 
         db.sqlBatch([
-          'CREATE TABLE IF NOT EXISTS teams (id integer, name text,location text)'
-          // ,[ 'INSERT INTO teams VALUES (?,?,?)', [0,'test team xxx','UCL test ward'] ],
-        ],
-        function() {
+          'DROP TABLE IF EXISTS teams',
+          'CREATE TABLE teams (id integer, name text,location text)',
+          [ 'INSERT INTO teams VALUES (?,?,?)', [0,'test team xxx','UCL test ward'] ],
+        ], function() {
           // mobileCount++;
           console.log('Find the idCount for team ****************');
           db.executeSql('SELECT MAX(id) AS idmax FROM teams;', [], function (resultSet) {
             console.log('----Sample column value: ' + resultSet.rows.item(0).idmax);
-            idCount.team = resultSet.rows.item(0).idmax ? 1 +resultSet.rows.item(0).idmax : 0;
-            console.log("Next id is: " + idCount.team);
+            idCount.team = 1 +resultSet.rows.item(0).idmax;
+            // console.log('Sample column value: ' + resultSet.rows.item(0).name);
+            // console.log('Sample column value: ' + resultSet.rows.item(0).location);
+            console.log("Next is is: " + idCount.team);
+            console.log(resultSet);
           });
         }, function(error) {
           console.log('Populate table ezzy error: ' + error.message);
@@ -75,5 +78,3 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
 
   });
 });
-
-

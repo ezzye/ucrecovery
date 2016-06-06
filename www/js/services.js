@@ -19,7 +19,7 @@ angular.module('app.services', [])
       name: "Mr Test",
       role: "0",
       contact: "12345",
-      team: "ward 10",
+      team: "0",
       picture: "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png"
       },
       {
@@ -290,8 +290,8 @@ angular.module('app.services', [])
         var location = team.location;
         var tempteam;
         tx.executeSql('INSERT INTO teams VALUES (?,?,?)',[id, name, location],function (tx,resultSet) {
-            console.log('resultSet.insertId: ' + resultSet.insertId);
-            console.log('resultSet.rowsAffected: ' + resultSet.rowsAffected);
+            console.log('team resultSet.insertId: ' + resultSet.insertId);
+            console.log('team resultSet.rowsAffected: ' + resultSet.rowsAffected);
         },
         function (error) {
             console.log('INSERT error: ' + error.message);
@@ -299,7 +299,7 @@ angular.module('app.services', [])
 
         tx.executeSql('SELECT * FROM teams',[],function (tx,resultSet) {
           teams.length = 0;
-          console.log('SELECT in add team value of teas is: ' + teams);
+          console.log('SELECT in add team value of teams is: ' + teams);
 
 
           for(var x = 0; x < resultSet.rows.length; x++) {
@@ -324,15 +324,69 @@ angular.module('app.services', [])
       });
     };
 
+    var addStaff = function(staff,callbackFn) {
+      db.transaction(function(tx) {
+        var id = staff.id;
+        var name = staff.name;
+        var role = staff.role;
+        var team = staff.team;
+        var contact = staff.contact;
+        var picture = "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png";
+        var tempstaff;
+        console.log(id);
+        console.log(name);
+        console.log(role);
+        console.log(team);
+        console.log(contact);
+        console.log(picture);
+        tx.executeSql('INSERT INTO staffmems VALUES (?,?,?,?,?,?)',[id, name, role, contact, team, picture],function (tx,resultSet) {
+            console.log('staff resultSet.insertId: ' + resultSet.insertId);
+            console.log('staff resultSet.rowsAffected: ' + resultSet.rowsAffected);
+        },
+        function (error) {
+            console.log('INSERT error: ' + error.message);
+        });
+
+        tx.executeSql('SELECT * FROM staffmems',[],function (tx,resultSet) {
+          staffmems.length = 0;
+          console.log('SELECT in add staff value of staffmems is: ' + staffmems);
+
+
+          for(var x = 0; x < resultSet.rows.length; x++) {
+            tempstaff = {};
+            tempstaff.id = resultSet.rows.item(x).id;
+            tempstaff.name = resultSet.rows.item(x).name;
+            tempstaff.role = resultSet.rows.item(x).role;
+            tempstaff.team = resultSet.rows.item(x).team;
+            tempstaff.contact = resultSet.rows.item(x).contact;
+            tempstaff.picture = resultSet.rows.item(x).picture;
+            console.log(tempstaff);
+            staffmems.push(tempstaff);
+          }
+        },
+        function (error) {
+            console.log('SELECT error: ' + error.message);
+        });
+
+      }, function(error) {
+        console.log('Open database ERROR: ' + JSON.stringify(error));
+      }, function() {
+        console.log('transaction ok');
+        console.log(staffmems);
+        callbackFn(staffmems);
+      });
+    };
+
 
   return {
 
     getTeams: getTeams,
     addTeam: addTeam,
-    addStaff: function(staff) {
-      staffmems.push(staff);
-      return staffmems;
-    },
+    addStaff: addStaff,
+    // addStaff: function(staff) {
+    //   staffmems.push(staff);
+    //   return staffmems;
+    // },
     getStaff: function() {
       return staffmems;
     },

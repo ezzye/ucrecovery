@@ -76,7 +76,7 @@ angular.module('app.controllers', [])
     console.log($scope.teams);
   });
   $scope.submitForm = function(staff) {
-    if(staff.name && staff.contact) {
+    if(staff.name && staff.contact && staff.team && staff.role) {
       $scope.staff.id = formData.getidStaff();
       formData.addStaff(staff,function(staffmems) {
       $scope.staffmems = staffmems;

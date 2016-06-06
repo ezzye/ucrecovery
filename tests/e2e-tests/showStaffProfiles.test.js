@@ -16,8 +16,6 @@ describe('Showing staff profile pages, ',function() {
       expect(element.all(by.repeater('staff in staffmems')).count()).toEqual(6);
     });
 
-    it('should display staff team on page')
-
     it('should show staff sorted by roles', function() {
       expect(element.all(by.repeater('role in roles')).count()).toEqual(3);
       // expect(element.all(by.repeater('role in roles')).row(1).count()).toEqual(1);

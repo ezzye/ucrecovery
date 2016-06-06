@@ -8,6 +8,7 @@
             <ion-item class="item-thumbnail-left" ng-repeat="staff in staffmems | filter: {role: role.id}">
                 <img src="img/dP6h8dpQSY6tDxqMA7OF_Consultant.png">
                 <h2>{{staff.name}}</h2>
+                <P>Team: {{staff.team}}</p>
                 <p>Contact information: {{staff.contact}}</p>
             </ion-item>
         </div>

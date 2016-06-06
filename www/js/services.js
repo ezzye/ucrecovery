@@ -19,7 +19,7 @@ angular.module('app.services', [])
       name: "Mr Test",
       role: "0",
       contact: "12345",
-      team: "ward 10",
+      team: "0",
       picture: "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png"
       },
       {

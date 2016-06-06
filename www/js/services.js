@@ -377,19 +377,49 @@ angular.module('app.services', [])
       });
     };
 
+    var getStaff = function(callbackFn) {
+    teams = [];
+    db.transaction(function(tx) {
+    var team;
+      tx.executeSql('SELECT * FROM staffmems',[],function (tx,resultSet) {
+        for(var x = 0; x < resultSet.rows.length; x++) {
+          tempstaff = {};
+          tempstaff.id = resultSet.rows.item(x).id;
+          tempstaff.name = resultSet.rows.item(x).name;
+          tempstaff.role = resultSet.rows.item(x).role;
+          tempstaff.team = resultSet.rows.item(x).team;
+          tempstaff.contact = resultSet.rows.item(x).contact;
+          tempstaff.picture = resultSet.rows.item(x).picture;
+          console.log(tempstaff);
+          staffmems.push(tempstaff);
+        }
+      },
+      function (error) {
+          console.log('SELECT error: ' + error.message);
+      });
+
+    }, function(error) {
+      console.log('Open database ERROR: ' + JSON.stringify(error));
+    }, function() {
+      console.log('transaction ok');
+      callbackFn(staffmems);
+    });
+  };
+
 
   return {
 
     getTeams: getTeams,
     addTeam: addTeam,
     addStaff: addStaff,
+    getStaff: getStaff,
     // addStaff: function(staff) {
     //   staffmems.push(staff);
     //   return staffmems;
     // },
-    getStaff: function() {
-      return staffmems;
-    },
+    // getStaff: function() {
+    //   return staffmems;
+    // },
     getRoles: function() {
       return roles;
     },

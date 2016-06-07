@@ -377,29 +377,168 @@ angular.module('app.services', [])
       });
     };
 
+  var getStaff = function(callbackFn) {
+    teams = [];
+    db.transaction(function(tx) {
+    var team;
+      tx.executeSql('SELECT * FROM staffmems',[],function (tx,resultSet) {
+        for(var x = 0; x < resultSet.rows.length; x++) {
+          tempstaff = {};
+          tempstaff.id = resultSet.rows.item(x).id;
+          tempstaff.name = resultSet.rows.item(x).name;
+          tempstaff.role = resultSet.rows.item(x).role;
+          tempstaff.team = resultSet.rows.item(x).team;
+          tempstaff.contact = resultSet.rows.item(x).contact;
+          tempstaff.picture = resultSet.rows.item(x).picture;
+          console.log(tempstaff);
+          staffmems.push(tempstaff);
+        }
+      },
+      function (error) {
+          console.log('SELECT error: ' + error.message);
+      });
+
+    }, function(error) {
+      console.log('Open database ERROR: ' + JSON.stringify(error));
+    }, function() {
+      console.log('transaction ok');
+      callbackFn(staffmems);
+    });
+  };
+
+
+  // (id integer, patientName text, patientDOB integer, HospitalNumber text, NHSNumber text, patientHeight integer, BetaBlockers integer, Antibiotic integer, BloodTransfusion integer, Antihypertensive integer )
+
+
+  var addPatient = function(patient,callbackFn) {
+      db.transaction(function(tx) {
+      var id = patient.id;
+      var patientName = patient.patientName;
+      var patientDOB = patient.patientDOB;
+      var HospitalNumber = patient.HospitalNumber;
+      var NHSNumber = patient.NHSNumber;
+      var patientHeight = patient.patientHeight;
+      var PreOpWeight = patient.PreOpWeight;
+      var BetaBlockers = patient.BetaBlockers;
+      var Antibiotic = patient.Antibiotic;
+      var BloodTransfusion = patient.BloodTransfusion;
+      var Antihypertensive = patient.Antihypertensive;
+      var temppatient;
+      console.log(id);
+      console.log(patientName);
+      console.log(patientDOB);
+      console.log(HospitalNumber);
+      console.log(NHSNumber);
+      console.log(patientHeight);
+      console.log(PreOpWeight);
+      console.log(BetaBlockers);
+      console.log(Antibiotic);
+      console.log(BloodTransfusion);
+      console.log(Antihypertensive);
+      tx.executeSql('INSERT INTO patients VALUES (?,?,?,?,?,?,?,?,?,?,?)',[id, patientName, patientDOB, HospitalNumber, NHSNumber, patientHeight, PreOpWeight, BetaBlockers, Antibiotic, BloodTransfusion, Antihypertensive],function (tx,resultSet) {
+          console.log('staff resultSet.insertId: ' + resultSet.insertId);
+          console.log('staff resultSet.rowsAffected: ' + resultSet.rowsAffected);
+      },
+      function (error) {
+          console.log('INSERT error: ' + error.message);
+      });
+
+      tx.executeSql('SELECT * FROM patients',[],function (tx,resultSet) {
+        staffmems.length = 0;
+        console.log('SELECT in add patient value of patients is: ' + patients);
+
+
+        for(var x = 0; x < resultSet.rows.length; x++) {
+          temppatient = {};
+          temppatient.id = resultSet.rows.item(x).id;
+          temppatient.patientName = resultSet.rows.item(x).patientName;
+          temppatient.patientDOB = resultSet.rows.item(x).patientDOB;
+          temppatient.HospitalNumber = resultSet.rows.item(x).HospitalNumber;
+          temppatient.NHSNumber = resultSet.rows.item(x).NHSNumber;
+          temppatient.patientHeight = resultSet.rows.item(x).patientHeight;
+          temppatient.PreOpWeight = resultSet.rows.item(x).PreOpWeight;
+          temppatient.BetaBlockers = resultSet.rows.item(x).BetaBlockers ? true : false;
+          temppatient.Antibiotic = resultSet.rows.item(x).Antibiotic ? true : false;
+          temppatient.BloodTransfusion = resultSet.rows.item(x).BloodTransfusion ? true : false;
+          temppatient.Antihypertensive = resultSet.rows.item(x).Antihypertensive ? true : false;
+          console.log(temppatient);
+          patients.push(temppatient);
+        }
+      },
+      function (error) {
+          console.log('SELECT error: ' + error.message);
+      });
+
+    }, function(error) {
+      console.log('Open database ERROR: ' + JSON.stringify(error));
+    }, function() {
+      console.log('transaction ok');
+      console.log(patients);
+      callbackFn(patients);
+    });
+  };
+
+
+  var getPatients = function(callbackFn) {
+    patients = [];
+    db.transaction(function(tx) {
+    var patient;
+      tx.executeSql('SELECT * FROM patients',[],function (tx,resultSet) {
+        for(var x = 0; x < resultSet.rows.length; x++) {
+          temppatient = {};
+          temppatient.id = resultSet.rows.item(x).id;
+          temppatient.patientName = resultSet.rows.item(x).patientName;
+          temppatient.patientDOB = resultSet.rows.item(x).patientDOB;
+          temppatient.HospitalNumber = resultSet.rows.item(x).HospitalNumber;
+          temppatient.NHSNumber = resultSet.rows.item(x).NHSNumber;
+          temppatient.patientHeight = resultSet.rows.item(x).patientHeight;
+          temppatient.PreOpWeight = resultSet.rows.item(x).PreOpWeight;
+          temppatient.BetaBlockers = resultSet.rows.item(x).BetaBlockers;
+          temppatient.Antibiotic = resultSet.rows.item(x).Antibiotic;
+          temppatient.BloodTransfusion = resultSet.rows.item(x).BloodTransfusion;
+          temppatient.Antihypertensive = resultSet.rows.item(x).Antihypertensive;
+          console.log(temppatient);
+          patients.push(temppatient);
+        }
+      },
+      function (error) {
+          console.log('SELECT error: ' + error.message);
+      });
+
+    }, function(error) {
+      console.log('Open database ERROR: ' + JSON.stringify(error));
+    }, function() {
+      console.log('transaction ok');
+      callbackFn(patients);
+    });
+  };
+
 
   return {
 
     getTeams: getTeams,
     addTeam: addTeam,
     addStaff: addStaff,
+    getStaff: getStaff,
+    addPatient: addPatient,
+    getPatients: getPatients,
     // addStaff: function(staff) {
     //   staffmems.push(staff);
     //   return staffmems;
     // },
-    getStaff: function() {
-      return staffmems;
-    },
+    // getStaff: function() {
+    //   return staffmems;
+    // },
     getRoles: function() {
       return roles;
     },
-    getPatients: function() {
-      return patients;
-    },
-    addPatient: function(patient) {
-      patients.push(patient);
-      return patients;
-    },
+    // getPatients: function() {
+    //   return patients;
+    // },
+    // addPatient: function(patient) {
+    //   patients.push(patient);
+    //   return patients;
+    // },
     getidTeam: function() {
       return idCount.team;
     },

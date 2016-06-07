@@ -41,14 +41,14 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
 
     try {
 
-      window.sqlitePlugin.deleteDatabase({name: 'my.db', location: 'default'}, function() {console.log("delete success");}, function(err) {console.log("delete error" + JSON.stringify(err));});
+      // window.sqlitePlugin.deleteDatabase({name: 'my.db', location: 'default'}, function() {console.log("delete success");}, function(err) {console.log("delete error" + JSON.stringify(err));});
 
       db = window.sqlitePlugin.openDatabase({ name: 'my.db', location: 'default' }, function () {
 
         db.sqlBatch([
           'CREATE TABLE IF NOT EXISTS teams (id integer, name text,location text)',
           'CREATE TABLE IF NOT EXISTS staffmems (id integer, name text, role text, contact text, team text, picture text)',
-          'CREATE TABLE IF NOT EXISTS patients (id integer, patientName text, patientDOB integer, HospitalNumber text, NHSNumber text, patientHeight integer, BetaBlockers integer, Antibiotic integer, BloodTransfusion integer, Antihypertensive integer )'
+          'CREATE TABLE IF NOT EXISTS patients (id integer, patientName text, patientDOB text, HospitalNumber text, NHSNumber text, patientHeight integer, PreOpWeight integer, BetaBlockers text, Antibiotic text, BloodTransfusion text, Antihypertensive text )'
           // ,[ 'INSERT INTO teams VALUES (?,?,?)', [0,'test team xxx','UCL test ward'] ],
         ],
         function() {

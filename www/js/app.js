@@ -41,7 +41,7 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes', 'a
 
     try {
 
-      window.sqlitePlugin.deleteDatabase({name: 'my.db', location: 'default'}, function() {console.log("delete success");}, function(err) {console.log("delete error" + JSON.stringify(err));});
+      // window.sqlitePlugin.deleteDatabase({name: 'my.db', location: 'default'}, function() {console.log("delete success");}, function(err) {console.log("delete error" + JSON.stringify(err));});
 
       db = window.sqlitePlugin.openDatabase({ name: 'my.db', location: 'default' }, function () {
 

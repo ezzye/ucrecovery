@@ -377,7 +377,7 @@ angular.module('app.services', [])
       });
     };
 
-    var getStaff = function(callbackFn) {
+  var getStaff = function(callbackFn) {
     teams = [];
     db.transaction(function(tx) {
     var team;
@@ -457,10 +457,10 @@ angular.module('app.services', [])
           temppatient.NHSNumber = resultSet.rows.item(x).NHSNumber;
           temppatient.patientHeight = resultSet.rows.item(x).patientHeight;
           temppatient.PreOpWeight = resultSet.rows.item(x).PreOpWeight;
-          temppatient.BetaBlockers = resultSet.rows.item(x).BetaBlockers;
-          temppatient.Antibiotic = resultSet.rows.item(x).Antibiotic;
-          temppatient.BloodTransfusion = resultSet.rows.item(x).BloodTransfusion;
-          temppatient.Antihypertensive = resultSet.rows.item(x).Antihypertensive;
+          temppatient.BetaBlockers = resultSet.rows.item(x).BetaBlockers ? true : false;
+          temppatient.Antibiotic = resultSet.rows.item(x).Antibiotic ? true : false;
+          temppatient.BloodTransfusion = resultSet.rows.item(x).BloodTransfusion ? true : false;
+          temppatient.Antihypertensive = resultSet.rows.item(x).Antihypertensive ? true : false;
           console.log(temppatient);
           patients.push(temppatient);
         }
@@ -479,6 +479,41 @@ angular.module('app.services', [])
   };
 
 
+  var getPatients = function(callbackFn) {
+    patients = [];
+    db.transaction(function(tx) {
+    var patient;
+      tx.executeSql('SELECT * FROM patients',[],function (tx,resultSet) {
+        for(var x = 0; x < resultSet.rows.length; x++) {
+          temppatient = {};
+          temppatient.id = resultSet.rows.item(x).id;
+          temppatient.patientName = resultSet.rows.item(x).patientName;
+          temppatient.patientDOB = resultSet.rows.item(x).patientDOB;
+          temppatient.HospitalNumber = resultSet.rows.item(x).HospitalNumber;
+          temppatient.NHSNumber = resultSet.rows.item(x).NHSNumber;
+          temppatient.patientHeight = resultSet.rows.item(x).patientHeight;
+          temppatient.PreOpWeight = resultSet.rows.item(x).PreOpWeight;
+          temppatient.BetaBlockers = resultSet.rows.item(x).BetaBlockers;
+          temppatient.Antibiotic = resultSet.rows.item(x).Antibiotic;
+          temppatient.BloodTransfusion = resultSet.rows.item(x).BloodTransfusion;
+          temppatient.Antihypertensive = resultSet.rows.item(x).Antihypertensive;
+          console.log(temppatient);
+          patients.push(temppatient);
+        }
+      },
+      function (error) {
+          console.log('SELECT error: ' + error.message);
+      });
+
+    }, function(error) {
+      console.log('Open database ERROR: ' + JSON.stringify(error));
+    }, function() {
+      console.log('transaction ok');
+      callbackFn(patients);
+    });
+  };
+
+
   return {
 
     getTeams: getTeams,
@@ -486,6 +521,7 @@ angular.module('app.services', [])
     addStaff: addStaff,
     getStaff: getStaff,
     addPatient: addPatient,
+    getPatients: getPatients,
     // addStaff: function(staff) {
     //   staffmems.push(staff);
     //   return staffmems;
@@ -496,9 +532,9 @@ angular.module('app.services', [])
     getRoles: function() {
       return roles;
     },
-    getPatients: function() {
-      return patients;
-    },
+    // getPatients: function() {
+    //   return patients;
+    // },
     // addPatient: function(patient) {
     //   patients.push(patient);
     //   return patients;

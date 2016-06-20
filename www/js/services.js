@@ -3,6 +3,7 @@
 angular.module('app.services', [])
 
 .factory('formData', ['objectData','sqlData',function(objectData,sqlData){
+
   console.log(isNotMobile);
   if(isNotMobile) {
     console.log(isNotMobile);
@@ -18,7 +19,7 @@ angular.module('app.services', [])
       name: "Mr Test",
       role: "0",
       contact: "12345",
-      team: "ward 10",
+      team: "0",
       picture: "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png"
       },
       {
@@ -30,7 +31,7 @@ angular.module('app.services', [])
       picture: "img/ep8SJoL3RZ6EqXtn74g7_Junior1.png"
       },
       {
-      id: 0,
+      id: 2,
       name: "Mr Test",
       role: "2",
       contact: "12345",
@@ -38,7 +39,7 @@ angular.module('app.services', [])
       picture: "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png"
       },
       {
-      id: 1,
+      id: 3,
       name: "Ms Tester",
       role: "2",
       contact: "23456",
@@ -46,7 +47,7 @@ angular.module('app.services', [])
       picture: "img/ep8SJoL3RZ6EqXtn74g7_Junior1.png"
       },
       {
-      id: 0,
+      id: 4,
       name: "Mr Test",
       role: "0",
       contact: "12345",
@@ -54,7 +55,7 @@ angular.module('app.services', [])
       picture: "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png"
       },
       {
-      id: 1,
+      id: 5,
       name: "Ms Tester",
       role: "2",
       contact: "23456",
@@ -120,6 +121,15 @@ angular.module('app.services', [])
 
 
   return {
+    getidTeam: function() {
+      return idCount.team;
+    },
+    getidStaff: function() {
+      return idCount.staff;
+    },
+    getidPatient: function() {
+      return idCount.patient;
+    },
     addTeam: function(team,callbackFn) {
       teams.push(team);
       callbackFn(teams);
@@ -127,22 +137,22 @@ angular.module('app.services', [])
     getTeams: function(callbackFn) {
       callbackFn(teams);
     },
-    addStaff: function(staff) {
+    addStaff: function(staff,callbackFn) {
       staffmems.push(staff);
-      return staffmems;
+      callbackFn(staffmems);
     },
-    getStaff: function() {
-      return staffmems;
+    getStaff: function(callbackFn) {
+      callbackFn(staffmems);
     },
     getRoles: function() {
       return roles;
     },
-    getPatients: function() {
-      return patients;
+    getPatients: function(callbackFn) {
+      callbackFn(patients);
     },
-    addPatient: function(patient) {
+    addPatient: function(patient,callbackFn) {
       patients.push(patient);
-      return patients;
+      callbackFn(patients);
     },
     getEnvironment: function() {
       var environment = "web";
@@ -259,7 +269,6 @@ angular.module('app.services', [])
           team.name = resultSet.rows.item(x).name;
           team.location = resultSet.rows.item(x).location;
           teams.push(team);
-          console.log(teams);
         }
       },
       function (error) {
@@ -271,19 +280,18 @@ angular.module('app.services', [])
     }, function() {
       console.log('transaction ok');
       callbackFn(teams);
-      console.log(teams);
     });
   };
 
   var addTeam = function(team,callbackFn) {
       db.transaction(function(tx) {
-        var id = mobileCount;
+        var id = team.id;
         var name = team.name;
         var location = team.location;
         var tempteam;
         tx.executeSql('INSERT INTO teams VALUES (?,?,?)',[id, name, location],function (tx,resultSet) {
-            console.log('resultSet.insertId: ' + resultSet.insertId);
-            console.log('resultSet.rowsAffected: ' + resultSet.rowsAffected);
+            console.log('team resultSet.insertId: ' + resultSet.insertId);
+            console.log('team resultSet.rowsAffected: ' + resultSet.rowsAffected);
         },
         function (error) {
             console.log('INSERT error: ' + error.message);
@@ -291,7 +299,7 @@ angular.module('app.services', [])
 
         tx.executeSql('SELECT * FROM teams',[],function (tx,resultSet) {
           teams.length = 0;
-          console.log('SELECT in add team value of teas is: ' + teams);
+          console.log('SELECT in add team value of teams is: ' + teams);
 
 
           for(var x = 0; x < resultSet.rows.length; x++) {
@@ -299,8 +307,8 @@ angular.module('app.services', [])
             tempteam.id = resultSet.rows.item(x).id;
             tempteam.name = resultSet.rows.item(x).name;
             tempteam.location = resultSet.rows.item(x).location;
+            console.log(tempteam);
             teams.push(tempteam);
-            console.log( "for loop adding team "+ teams);
           }
         },
         function (error) {
@@ -312,32 +320,233 @@ angular.module('app.services', [])
       }, function() {
         console.log('transaction ok');
         console.log(teams);
-        mobileCount++;
         callbackFn(teams);
       });
     };
+
+    var addStaff = function(staff,callbackFn) {
+      db.transaction(function(tx) {
+        var id = staff.id;
+        var name = staff.name;
+        var role = staff.role;
+        var team = staff.team;
+        var contact = staff.contact;
+        var picture = "img/dP6h8dpQSY6tDxqMA7OF_Consultant.png";
+        var tempstaff;
+        console.log(id);
+        console.log(name);
+        console.log(role);
+        console.log(team);
+        console.log(contact);
+        console.log(picture);
+        tx.executeSql('INSERT INTO staffmems VALUES (?,?,?,?,?,?)',[id, name, role, contact, team, picture],function (tx,resultSet) {
+            console.log('staff resultSet.insertId: ' + resultSet.insertId);
+            console.log('staff resultSet.rowsAffected: ' + resultSet.rowsAffected);
+        },
+        function (error) {
+            console.log('INSERT error: ' + error.message);
+        });
+
+        tx.executeSql('SELECT * FROM staffmems',[],function (tx,resultSet) {
+          staffmems.length = 0;
+          console.log('SELECT in add staff value of staffmems is: ' + staffmems);
+
+
+          for(var x = 0; x < resultSet.rows.length; x++) {
+            tempstaff = {};
+            tempstaff.id = resultSet.rows.item(x).id;
+            tempstaff.name = resultSet.rows.item(x).name;
+            tempstaff.role = resultSet.rows.item(x).role;
+            tempstaff.team = resultSet.rows.item(x).team;
+            tempstaff.contact = resultSet.rows.item(x).contact;
+            tempstaff.picture = resultSet.rows.item(x).picture;
+            console.log(tempstaff);
+            staffmems.push(tempstaff);
+          }
+        },
+        function (error) {
+            console.log('SELECT error: ' + error.message);
+        });
+
+      }, function(error) {
+        console.log('Open database ERROR: ' + JSON.stringify(error));
+      }, function() {
+        console.log('transaction ok');
+        console.log(staffmems);
+        callbackFn(staffmems);
+      });
+    };
+
+  var getStaff = function(callbackFn) {
+    teams = [];
+    db.transaction(function(tx) {
+    var team;
+      tx.executeSql('SELECT * FROM staffmems',[],function (tx,resultSet) {
+        for(var x = 0; x < resultSet.rows.length; x++) {
+          tempstaff = {};
+          tempstaff.id = resultSet.rows.item(x).id;
+          tempstaff.name = resultSet.rows.item(x).name;
+          tempstaff.role = resultSet.rows.item(x).role;
+          tempstaff.team = resultSet.rows.item(x).team;
+          tempstaff.contact = resultSet.rows.item(x).contact;
+          tempstaff.picture = resultSet.rows.item(x).picture;
+          console.log(tempstaff);
+          staffmems.push(tempstaff);
+        }
+      },
+      function (error) {
+          console.log('SELECT error: ' + error.message);
+      });
+
+    }, function(error) {
+      console.log('Open database ERROR: ' + JSON.stringify(error));
+    }, function() {
+      console.log('transaction ok');
+      callbackFn(staffmems);
+    });
+  };
+
+
+  // (id integer, patientName text, patientDOB integer, HospitalNumber text, NHSNumber text, patientHeight integer, BetaBlockers integer, Antibiotic integer, BloodTransfusion integer, Antihypertensive integer )
+
+
+  var addPatient = function(patient,callbackFn) {
+      db.transaction(function(tx) {
+      var id = patient.id;
+      var patientName = patient.patientName;
+      var patientDOB = patient.patientDOB;
+      var HospitalNumber = patient.HospitalNumber;
+      var NHSNumber = patient.NHSNumber;
+      var patientHeight = patient.patientHeight;
+      var PreOpWeight = patient.PreOpWeight;
+      var BetaBlockers = patient.BetaBlockers;
+      var Antibiotic = patient.Antibiotic;
+      var BloodTransfusion = patient.BloodTransfusion;
+      var Antihypertensive = patient.Antihypertensive;
+      var temppatient;
+      console.log(id);
+      console.log(patientName);
+      console.log(patientDOB);
+      console.log(HospitalNumber);
+      console.log(NHSNumber);
+      console.log(patientHeight);
+      console.log(PreOpWeight);
+      console.log(BetaBlockers);
+      console.log(Antibiotic);
+      console.log(BloodTransfusion);
+      console.log(Antihypertensive);
+      tx.executeSql('INSERT INTO patients VALUES (?,?,?,?,?,?,?,?,?,?,?)',[id, patientName, patientDOB, HospitalNumber, NHSNumber, patientHeight, PreOpWeight, BetaBlockers, Antibiotic, BloodTransfusion, Antihypertensive],function (tx,resultSet) {
+          console.log('staff resultSet.insertId: ' + resultSet.insertId);
+          console.log('staff resultSet.rowsAffected: ' + resultSet.rowsAffected);
+      },
+      function (error) {
+          console.log('INSERT error: ' + error.message);
+      });
+
+      tx.executeSql('SELECT * FROM patients',[],function (tx,resultSet) {
+        staffmems.length = 0;
+        console.log('SELECT in add patient value of patients is: ' + patients);
+
+
+        for(var x = 0; x < resultSet.rows.length; x++) {
+          temppatient = {};
+          temppatient.id = resultSet.rows.item(x).id;
+          temppatient.patientName = resultSet.rows.item(x).patientName;
+          temppatient.patientDOB = resultSet.rows.item(x).patientDOB;
+          temppatient.HospitalNumber = resultSet.rows.item(x).HospitalNumber;
+          temppatient.NHSNumber = resultSet.rows.item(x).NHSNumber;
+          temppatient.patientHeight = resultSet.rows.item(x).patientHeight;
+          temppatient.PreOpWeight = resultSet.rows.item(x).PreOpWeight;
+          temppatient.BetaBlockers = resultSet.rows.item(x).BetaBlockers ? true : false;
+          temppatient.Antibiotic = resultSet.rows.item(x).Antibiotic ? true : false;
+          temppatient.BloodTransfusion = resultSet.rows.item(x).BloodTransfusion ? true : false;
+          temppatient.Antihypertensive = resultSet.rows.item(x).Antihypertensive ? true : false;
+          console.log(temppatient);
+          patients.push(temppatient);
+        }
+      },
+      function (error) {
+          console.log('SELECT error: ' + error.message);
+      });
+
+    }, function(error) {
+      console.log('Open database ERROR: ' + JSON.stringify(error));
+    }, function() {
+      console.log('transaction ok');
+      console.log(patients);
+      callbackFn(patients);
+    });
+  };
+
+
+  var getPatients = function(callbackFn) {
+    patients = [];
+    db.transaction(function(tx) {
+    var patient;
+      tx.executeSql('SELECT * FROM patients',[],function (tx,resultSet) {
+        for(var x = 0; x < resultSet.rows.length; x++) {
+          temppatient = {};
+          temppatient.id = resultSet.rows.item(x).id;
+          temppatient.patientName = resultSet.rows.item(x).patientName;
+          temppatient.patientDOB = resultSet.rows.item(x).patientDOB;
+          temppatient.HospitalNumber = resultSet.rows.item(x).HospitalNumber;
+          temppatient.NHSNumber = resultSet.rows.item(x).NHSNumber;
+          temppatient.patientHeight = resultSet.rows.item(x).patientHeight;
+          temppatient.PreOpWeight = resultSet.rows.item(x).PreOpWeight;
+          temppatient.BetaBlockers = resultSet.rows.item(x).BetaBlockers;
+          temppatient.Antibiotic = resultSet.rows.item(x).Antibiotic;
+          temppatient.BloodTransfusion = resultSet.rows.item(x).BloodTransfusion;
+          temppatient.Antihypertensive = resultSet.rows.item(x).Antihypertensive;
+          console.log(temppatient);
+          patients.push(temppatient);
+        }
+      },
+      function (error) {
+          console.log('SELECT error: ' + error.message);
+      });
+
+    }, function(error) {
+      console.log('Open database ERROR: ' + JSON.stringify(error));
+    }, function() {
+      console.log('transaction ok');
+      callbackFn(patients);
+    });
+  };
 
 
   return {
 
     getTeams: getTeams,
     addTeam: addTeam,
-    addStaff: function(staff) {
-      staffmems.push(staff);
-      return staffmems;
-    },
-    getStaff: function() {
-      return staffmems;
-    },
+    addStaff: addStaff,
+    getStaff: getStaff,
+    addPatient: addPatient,
+    getPatients: getPatients,
+    // addStaff: function(staff) {
+    //   staffmems.push(staff);
+    //   return staffmems;
+    // },
+    // getStaff: function() {
+    //   return staffmems;
+    // },
     getRoles: function() {
       return roles;
     },
-    getPatients: function() {
-      return patients;
+    // getPatients: function() {
+    //   return patients;
+    // },
+    // addPatient: function(patient) {
+    //   patients.push(patient);
+    //   return patients;
+    // },
+    getidTeam: function() {
+      return idCount.team;
     },
-    addPatient: function(patient) {
-      patients.push(patient);
-      return patients;
+    getidStaff: function() {
+      return idCount.staff;
+    },
+    getidPatient: function() {
+      return idCount.patient;
     },
     getEnvironment: function() {
       var environment = "mobile";

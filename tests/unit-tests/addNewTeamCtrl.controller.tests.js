@@ -6,6 +6,7 @@ describe('addNewTeamCtrl',function() {
       stateMock,
       ionicPopupMock;
 
+
   var scope;
 
   var team ={};
@@ -18,7 +19,7 @@ describe('addNewTeamCtrl',function() {
 
   beforeEach(inject(function($controller,$rootScope) {
     scope = $rootScope.$new();
-    formDataServiceMock = jasmine.createSpyObj('formService spy',['addTeam']);
+    formDataServiceMock = jasmine.createSpyObj('formService spy',['addTeam','getidTeam']);
     stateMock = jasmine.createSpyObj('$state spy',['go']);
     ionicPopupMock = jasmine.createSpyObj('$ionicPopup spy',['alert']);
 
@@ -26,7 +27,7 @@ describe('addNewTeamCtrl',function() {
       $scope: scope,
       $state: stateMock,
       $ionicPopup: ionicPopupMock,
-      formData: formDataServiceMock
+      formData: formDataServiceMock,
     });
 
   }));
@@ -39,13 +40,17 @@ describe('addNewTeamCtrl',function() {
   describe('#submitForm', function() {
 
     it('call addTeam on formData service', function() {
-      expect(formDataServiceMock.addTeam).toHaveBeenCalledWith(team);
+      expect(formDataServiceMock.addTeam).toHaveBeenCalled();
     });
 
       describe('when form is submitted', function() {
 
         it('if successful it should change state to uCrecovery.teamProfiles', function() {
           expect(stateMock.go).toHaveBeenCalledWith('uCrecovery.teamProfiles');
+        });
+
+        it('should call getidTeam on formService',function() {
+          expect(formDataServiceMock.getidTeam).toHaveBeenCalled();
         });
 
         it('if unsuccessful it should show a popup', function() {
@@ -60,4 +65,5 @@ describe('addNewTeamCtrl',function() {
     });
   });
 });
+
 

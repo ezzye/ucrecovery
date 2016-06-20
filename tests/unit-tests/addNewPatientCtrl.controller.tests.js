@@ -31,7 +31,7 @@ describe('addNewPatientCtrl', function() {
 
     scope = $rootScope.$new();
 
-    formDataServiceMock = jasmine.createSpyObj('formService spy',['addPatient']);
+    formDataServiceMock = jasmine.createSpyObj('formService spy',['addPatient','getidPatient']);
 
     stateMock = jasmine.createSpyObj("$state spy", ['go']);
 
@@ -52,8 +52,12 @@ describe('addNewPatientCtrl', function() {
 
   describe('#submitForm', function() {
 
+    it('should call getidPatient on formService',function() {
+          expect(formDataServiceMock.getidPatient).toHaveBeenCalled();
+        });
+
     it('calls addPatient on formData service', function() {
-      expect(formDataServiceMock.addPatient).toHaveBeenCalledWith(patient);
+      expect(formDataServiceMock.addPatient).toHaveBeenCalled();
     });
 
     it('if successful it should change state to uCrecovery.staffProfiles', function() {

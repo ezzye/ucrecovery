@@ -1,6 +1,10 @@
 UC recovery
 =====================
 
+[![Throughput Graph](https://graphs.waffle.io/ezzye/ucrecovery/throughput.svg)](https://waffle.io/ezzye/ucrecovery/metrics/throughput)
+
+
+
 The app's objective is to reduce recovery times so that patients can get out of hospital and get on with their lives quicker, hospitals can save money on unexpectedly long stays, and other patients can be brought in for their urgent operations as soon as possible.
 
 As such, our app intends to work towards generating a new best practice for data collection.  We are all passionate about technology and really think it can make a difference!

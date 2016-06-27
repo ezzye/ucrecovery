@@ -1,6 +1,16 @@
 <ion-view title="Add New Staff" id="page13">
     <ion-content padding="true" class="has-header">
         <form class="list" ng-submit="submitForm(staff)">
+            <label class="item item-input item-select">
+                <span class="input-label">Title</span>
+                <select name="title" ng-model="staff.title">
+                  <option value="Ms">Ms</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="Miss">Miss</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Dr">Dr</option>
+                </select><br>
+            </label>
             <label class="item item-input">
                 <span class="input-label">Staff name</span>
                 <input type="text" ng-model="staff.name" placeholder="">

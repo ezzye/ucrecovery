@@ -3,7 +3,7 @@
 describe('Showing staff profile pages, ',function() {
 
   var addNewStaffProfileButton, createProfileButton;
-  var staffContact, staffRole, staffTeam, staffName;
+  var staffContact, staffRole, staffTeam, staffName, staffTitle;
 
   describe('Staff profile page',function() {
 
@@ -37,6 +37,7 @@ describe('Showing staff profile pages, ',function() {
       staffContact = element(by.model('staff.contact'));
       staffRole = element(by.cssContainingText('option', 'Doctor'));
       staffTeam = element(by.cssContainingText('option', 'Ward Z'));
+      staffTitle = element(by.cssContainingText('option', 'Dr'));
       staffName = element(by.model('staff.name'));
     });
 

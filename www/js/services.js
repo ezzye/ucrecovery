@@ -89,7 +89,7 @@ angular.module('app.services', [])
       name: "Nurse"
       }
     ];
-
+    
     // need to add id to objects
 
   var patients = [
@@ -560,7 +560,3 @@ angular.module('app.services', [])
 .service('BlankService', [function(){
 
 }]);
-
-
-
-

@@ -5,9 +5,15 @@
         <div class="list card" ng-repeat="team in teams">
             <div class="item item-divider">{{team.name}}</div>
             <div class="item item-body">
-
-      
+                  <ion-item id="profile" class="item-thumbnail-left" ng-repeat="staff in staffmems">
+                      <img src="img/dP6h8dpQSY6tDxqMA7OF_Consultant.png">
+                      <h2>{{staff.name}}</h2>
+                      <p>Team: {{staff.team}}</p>
+                      <p>Contact information: {{staff.contact}}</p>
+                  </ion-item>
             </div>
+
+
         </div>
         <div class="spacer" style="height: 100px;"></div>
     </ion-content>

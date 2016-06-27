@@ -11,6 +11,7 @@ describe('addNewStaffCtrl', function() {
 
   var staff = {};
 
+  staff.title = "Mr";
   staff.name = "TestName";
   staff.role = "TestRole";
   staff.contact = "012345234567";

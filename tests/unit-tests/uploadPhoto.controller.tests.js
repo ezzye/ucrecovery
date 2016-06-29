@@ -17,6 +17,6 @@ describe('uploadPhotoCtrl', function(){
 	}));
 
 	it('has an upload function', function(){
-		expect($scope.upload).toBeAFunction;
+		expect(controller.upload).toBeAFunction;
 	});
 });

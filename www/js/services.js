@@ -555,7 +555,73 @@ angular.module('app.services', [])
   };
 }])
 
+.factory('ImageService', ['formData','uploadPhotoCtrl',function(formData,uploadPhotoCtrl,$cordovaCamera, $q, $cordovaFile, FileService){
 
+  function optionsForType(type) {
+    var source;
+    switch (type) {
+      case 0:
+        source = Camera.PictureSourceType.CAMERA;
+        break;
+      case 1:
+        source = Camera.PictureSourceType.PHOTOLIBRARY;
+        break;
+    }
+    return {
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: source,
+      allowedEdit: false,
+      encodingType: Camera.EncodingType.JPEG,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: true
+    };
+  }
+
+  function saveMedia (type) {
+    return $q(function (resolve, reject) {
+      var options = optionsForType(type);
+
+      $cordovaCamera.getPicture(options).then(function(imageUrl){
+        var name = imageUrl.substr(imageUrl.lastIndexof('/') + 1);
+        var namePath = imageUrl.substr(0, name);
+        var newName = name + '_Avatar';
+        $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory, newName)
+          .then(function(info){
+            FileService.storeAvatar(newName);
+            resolve();
+          }, function(e) {
+            reject();
+          });
+      });
+    })
+  }
+
+}])
+
+.factory('FileService', [function(){
+  var avatar;
+  var AVATAR_STORAGE_KEY = 'avatar';
+
+  function getAvatar() {
+    var avt = window.localStorage.getItem(AVATAR_STORAGE_KEY);
+    if (avt) {
+      avatar = JSON.parse(avt);
+    } else {
+      avatar = {};
+    }
+    return avatar;
+  };
+
+  function setAvatar(avt) {
+    avatar = avt;
+    window.localStorage.setItem(AVATAR_STORAGE_KEY, JSON.stringify(avatar));
+  };
+
+  return {
+    storeAvatar: setAvatar,
+    avatar: getAvatar
+  }
+}])
 
 .service('BlankService', [function(){
 

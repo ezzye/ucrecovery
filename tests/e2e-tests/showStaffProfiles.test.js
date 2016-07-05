@@ -42,7 +42,7 @@ describe('Showing staff profile pages, ',function() {
       addPhotoButton = element(by.id("staffProfiles-button110"));
     });
 
-    it('add a staff record', function(){
+    it('should add a staff record', function(){
       staffName.sendKeys('James Brown');
       staffRole.click();
       staffTeam.click();

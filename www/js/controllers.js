@@ -92,9 +92,17 @@ angular.module('app.controllers', [])
   };
 })
 
-.controller('uploadPhotoCtrl', function($scope) {
+.controller('uploadPhotoCtrl', function($scope,$cordovaDevice,$cordovaFile,ImageService,FileService,formData) {
   $scope.upload = function() {
     var options = {};
+  };
+
+  $scope.avatar = {};
+
+  $scope.getImage = function(button) {
+    ImageService.handleMediaDialogue(button).then(function(){
+      $scope.$apply();
+    });
   };
 })
 

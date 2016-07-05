@@ -1,10 +1,10 @@
 <ion-view title="Upload Photo" id="page20">
     <ion-content padding="true" class="has-header">
         <h1>Select your picture from:</h1>
-        <button id="gallery" class="button button-balanced button-block">Photo Gallery</button>
-        <button id="camera" class="button button-balanced button-block">Take with camera</button>
+        <button id="gallery" class="button button-balanced button-block" ng-click="getImage(0)">Photo Gallery</button>
+        <button id="camera" class="button button-balanced button-block" ng-click="getImage(1)">Take with camera</button>
         <br>
-        <img ng-src="{{avatar}}" id="avatar">
+        <img ng-src="{{urlForImage(avatar)}}" id="avatar">
         <br>
         <button type="submit" id="upload" class="button button-assertive button-block icon ion-ios-person-outline">Upload your photo!</button>
     </ion-content>

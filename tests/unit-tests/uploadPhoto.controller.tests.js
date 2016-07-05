@@ -22,8 +22,8 @@ describe('uploadPhotoCtrl', function(){
 		cameraButtonClicked = 1;
 		imageServiceSpy = {handleMediaDialogue: function() {} };
 		spyOn(imageServiceSpy, "handleMediaDialogue").and.returnValue(true);
-		fileServiceSpy = {avatar: function() {} };
-		spyOn(fileServiceSpy, "avatar").and.returnValue('img/jstdrtinycat.jpg');
+		fileServiceSpy = {getAvatar: function() {} };
+		spyOn(fileServiceSpy, "getAvatar").and.returnValue('img/jstdrtinycat.jpg');
 		cordovaFileMock = jasmine.createSpyObj('cordovaFile spy',['dataDirectory']);
 		formDataServiceMock = jasmine.createSpyObj('formService spy',['addStaff', 'getRoles', 'getTeams', 'getidStaff', 'setPicture']);
 

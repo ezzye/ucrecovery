@@ -97,7 +97,14 @@ angular.module('app.controllers', [])
     var options = {};
   };
 
-  $scope.avatar = {};
+  $scope.avatar = function() {
+    return FileService.avatar;
+  }
+
+  $scope.urlForImage = function(avt) {
+    var trueOrigin = cordova.file.dataDirectory + avt;
+    return trueOrigin;
+  }
 
   $scope.getImage = function(button) {
     ImageService.handleMediaDialogue(button).then(function(){

@@ -595,7 +595,9 @@ angular.module('app.services', [])
       });
     })
   }
-
+  return {
+    handleMediaDialogue: saveMedia
+  }
 }])
 
 .factory('FileService', [function(){
@@ -607,7 +609,7 @@ angular.module('app.services', [])
     if (avt) {
       avatar = JSON.parse(avt);
     } else {
-      avatar = {};
+      avatar = "No Avatar Selected";
     }
     return avatar;
   };
